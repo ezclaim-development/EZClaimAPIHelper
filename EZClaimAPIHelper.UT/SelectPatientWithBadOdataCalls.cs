@@ -24,7 +24,7 @@ namespace EZClaimAPIHelper.UT
         /// Method used by all SelectPatientWithBadFilterOdata methods.
         /// </summary>
         /// <param name="apiHelperObject"></param>
-        private void selectPatientWithBadOdata(ref APIUnitTestHelperObject apiHelperObject, string query)
+        private void selectPatientWithBadOdata(ref APIUnitTestHelperObject apiHelperObject, string query, bool skipAssert = false)
         {
             apiHelperObject.APIBody = $@"{{
                     ""Query"": ""{query}""
@@ -34,7 +34,10 @@ namespace EZClaimAPIHelper.UT
 
             apiHelperObject.RunAPICall(HttpMethod.Post);
 
-            Assert.NotEqual(200, apiHelperObject.ResponseStatus);
+            if (!skipAssert)
+            {
+                Assert.NotEqual(200, apiHelperObject.ResponseStatus);
+            }
         }
 
         private void selectPatientWithBadOdata_ExpectedOutcomeEquals(ref APIUnitTestHelperObject apiHelperObject, string query, string expectedValue)
@@ -56,11 +59,46 @@ namespace EZClaimAPIHelper.UT
 
         private void selectPatientWithBadOdata_printOutcome(ref APIUnitTestHelperObject apiHelperObject, string query)
         {
-            selectPatientWithBadOdata(ref apiHelperObject, query);
+            selectPatientWithBadOdata(ref apiHelperObject, query, true);
 
-            output.WriteLine(query);
-            output.WriteLine(apiHelperObject.ResponseErrorResult["description"]);
-            output.WriteLine("\n\n");
+            output.WriteLine($"queryValue = \"{query}\";");
+            output.WriteLine("");
+
+            if (apiHelperObject.ResponseStatus == 200)
+            {
+                output.WriteLine("Call Successful");
+            }
+            else
+            {
+                string description = apiHelperObject.ResponseErrorResult["description"];
+
+                string[] splitDescription = description.Replace("\r\n", "\n").Split("\n");
+
+                if (splitDescription.Length == 1)
+                {
+                    output.WriteLine($"selectPatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, \"{description}\");");
+                }
+                else
+                {
+                    output.WriteLine("expectedContainsValuesList = new();");
+
+                    foreach (string splitDescriptionItem in splitDescription)
+                    {
+                        if (!string.IsNullOrWhiteSpace(splitDescriptionItem))
+                        {
+                            output.WriteLine($"expectedContainsValuesList.Add(\"{splitDescriptionItem}\");");
+                        }
+                    }
+
+                    output.WriteLine("");
+                    output.WriteLine("selectPatientWithBadOdata_ExpectedOutcomeContains(ref apiHelperObject, queryValue, expectedContainsValuesList);");
+                }
+
+                output.WriteLine("");
+                output.WriteLine("Thread.Sleep(3000);");
+            }
+
+            output.WriteLine("");
         }
     }
 }

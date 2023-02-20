@@ -10,3 +10,15 @@ C:\Users\tbeckett\source\repos\Eve\EZClaimAPIHelper\EZClaimAPIHelper\obj\Debug\n
 C:\Users\tbeckett\source\repos\Eve\EZClaimAPIHelper\EZClaimAPIHelper\obj\Debug\net5.0\EZClaimAPIHelper.dll
 C:\Users\tbeckett\source\repos\Eve\EZClaimAPIHelper\EZClaimAPIHelper\obj\Debug\net5.0\ref\EZClaimAPIHelper.dll
 C:\Users\tbeckett\source\repos\Eve\EZClaimAPIHelper\EZClaimAPIHelper\obj\Debug\net5.0\EZClaimAPIHelper.pdb
+C:\Users\wbunin\source\repos\EZClaimAPIHelper\EZClaimAPIHelper\bin\Debug\net5.0\EZClaimAPIHelper.deps.json
+C:\Users\wbunin\source\repos\EZClaimAPIHelper\EZClaimAPIHelper\bin\Debug\net5.0\EZClaimAPIHelper.dll
+C:\Users\wbunin\source\repos\EZClaimAPIHelper\EZClaimAPIHelper\bin\Debug\net5.0\ref\EZClaimAPIHelper.dll
+C:\Users\wbunin\source\repos\EZClaimAPIHelper\EZClaimAPIHelper\bin\Debug\net5.0\EZClaimAPIHelper.pdb
+C:\Users\wbunin\source\repos\EZClaimAPIHelper\EZClaimAPIHelper\obj\Debug\net5.0\EZClaimAPIHelper.csprojAssemblyReference.cache
+C:\Users\wbunin\source\repos\EZClaimAPIHelper\EZClaimAPIHelper\obj\Debug\net5.0\EZClaimAPIHelper.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\wbunin\source\repos\EZClaimAPIHelper\EZClaimAPIHelper\obj\Debug\net5.0\EZClaimAPIHelper.AssemblyInfoInputs.cache
+C:\Users\wbunin\source\repos\EZClaimAPIHelper\EZClaimAPIHelper\obj\Debug\net5.0\EZClaimAPIHelper.AssemblyInfo.cs
+C:\Users\wbunin\source\repos\EZClaimAPIHelper\EZClaimAPIHelper\obj\Debug\net5.0\EZClaimAPIHelper.csproj.CoreCompileInputs.cache
+C:\Users\wbunin\source\repos\EZClaimAPIHelper\EZClaimAPIHelper\obj\Debug\net5.0\EZClaimAPIHelper.dll
+C:\Users\wbunin\source\repos\EZClaimAPIHelper\EZClaimAPIHelper\obj\Debug\net5.0\ref\EZClaimAPIHelper.dll
+C:\Users\wbunin\source\repos\EZClaimAPIHelper\EZClaimAPIHelper\obj\Debug\net5.0\EZClaimAPIHelper.pdb

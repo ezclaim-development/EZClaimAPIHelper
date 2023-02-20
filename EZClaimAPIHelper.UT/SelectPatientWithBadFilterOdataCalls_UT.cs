@@ -10,16 +10,13 @@ namespace EZClaimAPIHelper.UT
 {
     public partial class SelectPatientWithBadOdataCalls_UT
     {
-        [Fact]
+        [Fact(Skip = "This is used for example purposes only. It can be run, but there's no point.")]
         public void SelectPatientWithBadFilterOdataCalls()
         {
-            //This does a full gambit test on the Patient endpoints.
-            return;
-
             using (Aes aes = Aes.Create())
             {
                 //APIUnitTestHelperObject apiHelperObject = new(aes.Key, aes.IV, ExampleRSAPublicKey, s01Token, "https://localhost:44320");
-                APIUnitTestHelperObject apiHelperObject = new(aes.Key, aes.IV, APIUnitTestHelperObject.ProductionRSAPublicKey, APIUnitTestHelperObject.Client002844_ProviderPortalTestToken, "https://ezclaimapidev.azurewebsites.net");
+                APIUnitTestHelperObject apiHelperObject = new(aes.Key, aes.IV, APIUnitTestHelperObject.ProductionRSAPublicKey, APIUnitTestHelperObject.TestToken, "https://ezclaimapidev.azurewebsites.net");
 
                 Thread.Sleep(3000);
                 // Attempt to select a patient record using filters instead of filter
@@ -29,7 +26,7 @@ namespace EZClaimAPIHelper.UT
                 expectedContainsValuesList.Add("Invalid input parameter : ");
                 expectedContainsValuesList.Add("Query can contain '$select=' or '$filter=' or '$orderby=' or '$ids=' or '$top=' or 'join='");
                 selectPatientWithBadOdata_ExpectedOutcomeContains(ref apiHelperObject, queryValue, expectedContainsValuesList);
-                
+
                 Thread.Sleep(3000);
 
                 // Attempt to select a patient record using filter without the required dollar symbol
@@ -38,9 +35,9 @@ namespace EZClaimAPIHelper.UT
                 expectedContainsValuesList = new();
                 expectedContainsValuesList.Add("Invalid input parameter : ");
                 expectedContainsValuesList.Add("Query can contain '$select=' or '$filter=' or '$orderby=' or '$ids=' or '$top=' or 'join='");
-                
+
                 selectPatientWithBadOdata_ExpectedOutcomeContains(ref apiHelperObject, queryValue, expectedContainsValuesList);
-                
+
                 Thread.Sleep(3000);
 
                 // Attempt to select a patient record without a comparison value
@@ -50,14 +47,14 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
                 // Attempt to select a patient record without an = symbol
-                queryValue = "$filter:PatLastName eq 'APIPatientLastName'"; 
-                
+                queryValue = "$filter:PatLastName eq 'APIPatientLastName'";
+
                 expectedContainsValuesList = new();
                 expectedContainsValuesList.Add("Invalid input parameter : ");
                 expectedContainsValuesList.Add("Query can contain '$select=' or '$filter=' or '$orderby=' or '$ids=' or '$top=' or 'join='");
-                
+
                 selectPatientWithBadOdata_ExpectedOutcomeContains(ref apiHelperObject, queryValue, expectedContainsValuesList);
-                
+
                 Thread.Sleep(3000);
 
                 // Attempt to select a patient record with incorrect comparison type. Valid types are eq, ne, in
@@ -126,9 +123,9 @@ namespace EZClaimAPIHelper.UT
                 expectedContainsValuesList = new();
                 expectedContainsValuesList.Add("Incorrect syntax near");
                 expectedContainsValuesList.Add("Invalid usage of the option NEXT in the FETCH statement.");
-                
+
                 selectPatientWithBadOdata_ExpectedOutcomeContains(ref apiHelperObject, queryValue, expectedContainsValuesList);
-                
+
                 Thread.Sleep(3000);
 
                 // Attempt to select a patient record with bad conjunction format

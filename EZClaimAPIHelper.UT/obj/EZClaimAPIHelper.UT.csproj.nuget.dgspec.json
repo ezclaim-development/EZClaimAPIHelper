@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tbeckett\\source\\repos\\Eve\\EZClaimAPIHelper\\EZClaimAPIHelper.UT\\EZClaimAPIHelper.UT.csproj": {}
+    "C:\\Users\\wbunin\\source\\repos\\EZClaimAPIHelper\\EZClaimAPIHelper.UT\\EZClaimAPIHelper.UT.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tbeckett\\source\\repos\\Eve\\EZClaimAPIHelper\\EZClaimAPIHelper.UT\\EZClaimAPIHelper.UT.csproj": {
+    "C:\\Users\\wbunin\\source\\repos\\EZClaimAPIHelper\\EZClaimAPIHelper.UT\\EZClaimAPIHelper.UT.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tbeckett\\source\\repos\\Eve\\EZClaimAPIHelper\\EZClaimAPIHelper.UT\\EZClaimAPIHelper.UT.csproj",
+        "projectUniqueName": "C:\\Users\\wbunin\\source\\repos\\EZClaimAPIHelper\\EZClaimAPIHelper.UT\\EZClaimAPIHelper.UT.csproj",
         "projectName": "EZClaimAPIHelper.UT",
-        "projectPath": "C:\\Users\\tbeckett\\source\\repos\\Eve\\EZClaimAPIHelper\\EZClaimAPIHelper.UT\\EZClaimAPIHelper.UT.csproj",
-        "packagesPath": "C:\\Users\\tbeckett\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tbeckett\\source\\repos\\Eve\\EZClaimAPIHelper\\EZClaimAPIHelper.UT\\obj\\",
+        "projectPath": "C:\\Users\\wbunin\\source\\repos\\EZClaimAPIHelper\\EZClaimAPIHelper.UT\\EZClaimAPIHelper.UT.csproj",
+        "packagesPath": "C:\\Users\\wbunin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\wbunin\\source\\repos\\EZClaimAPIHelper\\EZClaimAPIHelper.UT\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\DevExpress 20.2\\.NET Core Desktop Libraries\\Offline Packages",
+          "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\Offline Packages",
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\tbeckett\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\wbunin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress .NET Core Desktop 20.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.1.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -28,17 +34,19 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\DevExpress 18.1\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\DevExpress 19.1\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\DevExpress 20.2\\.NET Core Desktop Libraries\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\tbeckett\\source\\repos\\Eve\\Resources.ThirdPartyDLLs.NuGet": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\tbeckett\\source\\repos\\Eve\\EZClaimAPIHelper\\EZClaimAPIHelper\\EZClaimAPIHelper.csproj": {
-                "projectPath": "C:\\Users\\tbeckett\\source\\repos\\Eve\\EZClaimAPIHelper\\EZClaimAPIHelper\\EZClaimAPIHelper.csproj"
+              "C:\\Users\\wbunin\\source\\repos\\EZClaimAPIHelper\\EZClaimAPIHelper\\EZClaimAPIHelper.csproj": {
+                "projectPath": "C:\\Users\\wbunin\\source\\repos\\EZClaimAPIHelper\\EZClaimAPIHelper\\EZClaimAPIHelper.csproj"
               }
             }
           }
@@ -61,9 +69,21 @@
               "target": "Package",
               "version": "[2.1.1, )"
             },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[16.7.1, )"
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             },
             "coverlet.collector": {
               "target": "Package",
@@ -99,26 +119,32 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.214\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\tbeckett\\source\\repos\\Eve\\EZClaimAPIHelper\\EZClaimAPIHelper\\EZClaimAPIHelper.csproj": {
+    "C:\\Users\\wbunin\\source\\repos\\EZClaimAPIHelper\\EZClaimAPIHelper\\EZClaimAPIHelper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tbeckett\\source\\repos\\Eve\\EZClaimAPIHelper\\EZClaimAPIHelper\\EZClaimAPIHelper.csproj",
+        "projectUniqueName": "C:\\Users\\wbunin\\source\\repos\\EZClaimAPIHelper\\EZClaimAPIHelper\\EZClaimAPIHelper.csproj",
         "projectName": "EZClaimAPIHelper",
-        "projectPath": "C:\\Users\\tbeckett\\source\\repos\\Eve\\EZClaimAPIHelper\\EZClaimAPIHelper\\EZClaimAPIHelper.csproj",
-        "packagesPath": "C:\\Users\\tbeckett\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tbeckett\\source\\repos\\Eve\\EZClaimAPIHelper\\EZClaimAPIHelper\\obj\\",
+        "projectPath": "C:\\Users\\wbunin\\source\\repos\\EZClaimAPIHelper\\EZClaimAPIHelper\\EZClaimAPIHelper.csproj",
+        "packagesPath": "C:\\Users\\wbunin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\wbunin\\source\\repos\\EZClaimAPIHelper\\EZClaimAPIHelper\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\DevExpress 20.2\\.NET Core Desktop Libraries\\Offline Packages",
+          "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\Offline Packages",
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\tbeckett\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\wbunin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress .NET Core Desktop 20.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 18.1.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.2.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -127,9 +153,11 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\DevExpress 18.1\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\DevExpress 19.1\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\DevExpress 19.2\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\DevExpress 20.2\\.NET Core Desktop Libraries\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\tbeckett\\source\\repos\\Eve\\Resources.ThirdPartyDLLs.NuGet": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -151,6 +179,10 @@
             "Portable.BouncyCastle": {
               "target": "Package",
               "version": "[1.9.0, )"
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
@@ -168,7 +200,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.214\\RuntimeIdentifierGraph.json"
         }
       }
     }

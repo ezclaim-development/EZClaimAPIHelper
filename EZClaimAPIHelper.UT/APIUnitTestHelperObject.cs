@@ -6,17 +6,21 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using Microsoft.Extensions.Configuration;
 
 namespace EZClaimAPIHelper.UT
 {
     public class APIUnitTestHelperObject
     {
-        public static string ExampleRSAPublicKey = ConfigurationManager.AppSettings["ExampleRSAPublicKey"].ToString();
-        public static string ProductionRSAPublicKey = ConfigurationManager.AppSettings["ProductionRSAPublicKey"].ToString();
+        public static IConfigurationRoot config = new ConfigurationBuilder()
+.AddJsonFile("appsettings.json")
+.Build();
 
-        public static string s01Token = ConfigurationManager.AppSettings["s01Token"].ToString();
-        public static string Client002844_ProviderPortalTestToken = ConfigurationManager.AppSettings["Client002844_ProviderPortalTestToken"].ToString();
+        public static string ExampleRSAPublicKey = config["ExampleRSAPublicKey"].ToString();
+        public static string ProductionRSAPublicKey = config["ProductionRSAPublicKey"].ToString();
 
+        public static string s01Token = config["s01Token"].ToString();
+        public static string TestToken = config["TestToken"].ToString();
 
         public byte[] AESKey;
         public byte[] AESIV;

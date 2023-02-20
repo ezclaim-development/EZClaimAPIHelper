@@ -24,17 +24,13 @@ namespace EZClaimAPIHelper.UT
         /// <summary>
         /// Runs a full gambit of tests on the patient endpoints. It pauses for 3 seconds between endpoint calls to make sure it doesn't get rate limited.
         /// </summary>
-        [Fact]
+        [Fact(Skip = "This is used for example purposes only. It can be run, but there's no point.")]
         public void LiveCall_FullCrudPatient()
         {
-            //This does a full gambit test on the Patient endpoints.
-            return;
-
-            //The API handles this part
             using (Aes aes = Aes.Create())
             {
                 //APIUnitTestHelperObject apiHelperObject = new(aes.Key, aes.IV, ExampleRSAPublicKey, s01Token, "https://localhost:44320");
-                APIUnitTestHelperObject apiHelperObject = new(aes.Key, aes.IV, APIUnitTestHelperObject.ProductionRSAPublicKey, APIUnitTestHelperObject.Client002844_ProviderPortalTestToken, "https://ezclaimapidev.azurewebsites.net");
+                APIUnitTestHelperObject apiHelperObject = new(aes.Key, aes.IV, APIUnitTestHelperObject.ProductionRSAPublicKey, APIUnitTestHelperObject.TestToken, "https://ezclaimapidev.azurewebsites.net");
 
                 selectTop1Patient(ref apiHelperObject);
 

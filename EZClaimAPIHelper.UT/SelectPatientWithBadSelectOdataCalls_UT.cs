@@ -10,16 +10,13 @@ namespace EZClaimAPIHelper.UT
 {
     public partial class SelectPatientWithBadOdataCalls_UT
     {
-        [Fact]
+        [Fact(Skip = "This is used for example purposes only. It can be run, but there's no point.")]
         public void SelectPatientWithBadSelectOdataCalls()
         {
-            //This does a full gambit test on the Patient endpoints.
-            return;
-
             using (Aes aes = Aes.Create())
             {
                 //APIUnitTestHelperObject apiHelperObject = new(aes.Key, aes.IV, ExampleRSAPublicKey, s01Token, "https://localhost:44320");
-                APIUnitTestHelperObject apiHelperObject = new(aes.Key, aes.IV, APIUnitTestHelperObject.ProductionRSAPublicKey, APIUnitTestHelperObject.Client002844_ProviderPortalTestToken, "https://ezclaimapidev.azurewebsites.net");
+                APIUnitTestHelperObject apiHelperObject = new(aes.Key, aes.IV, APIUnitTestHelperObject.ProductionRSAPublicKey, APIUnitTestHelperObject.TestToken, "https://ezclaimapidev.azurewebsites.net");
 
                 queryValue = "$select=Claim";
 
