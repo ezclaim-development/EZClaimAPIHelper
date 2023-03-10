@@ -21,11 +21,28 @@ namespace EZClaimAPIHelper
 
                 HttpRequestMessage requestMessage = new HttpRequestMessage(httpMethod, endpoint);
 
-                requestMessage.Headers.Add("Token", token);
-                requestMessage.Headers.Add("AESIVAsBase64String", aesIVAsBase64String);
-                requestMessage.Headers.Add("EncryptedAESKeyAsBase64String", encryptedAESKeyAsBase64String);
+                if (token != null)
+                {
+                    requestMessage.Headers.Add("Token", token);
+                }
 
-                requestMessage.Content = new StringContent($"\"{encryptedStringInBase64}\"", Encoding.UTF8, "application/json");
+                if (aesIVAsBase64String != null)
+                {
+
+                    requestMessage.Headers.Add("AESIVAsBase64String", aesIVAsBase64String);
+                }
+
+                if (encryptedAESKeyAsBase64String != null)
+                {
+
+                    requestMessage.Headers.Add("EncryptedAESKeyAsBase64String", encryptedAESKeyAsBase64String);
+                }
+
+                if (encryptedStringInBase64 != null)
+                {
+                    requestMessage.Content = new StringContent($"\"{encryptedStringInBase64}\"", Encoding.UTF8, "application/json");
+                }
+
                 return httpClient.SendAsync(requestMessage).Result;
             }
         }

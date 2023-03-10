@@ -22,6 +22,15 @@ namespace EZClaimAPIHelper.UT
         public static string s01Token = config["s01Token"].ToString();
         public static string TestToken = config["TestToken"].ToString();
 
+        public static string TestToken_SelectPatient = config["TestToken_SelectPatient"].ToString();
+        public static string TestToken_CreatePatient = config["TestToken_CreatePatient"].ToString();
+        public static string TestToken_UpdatePatient = config["TestToken_UpdatePatient"].ToString();
+        public static string TestToken_DeletePatient = config["TestToken_DeletePatient"].ToString();
+        public static string TestToken2_NotYetRegisteredToken = config["TestToken2_NotYetRegisteredToken"].ToString();
+
+        public static string s01Token_CreatePatient = config["s01Token_CreatePatient"].ToString();
+        public static string s01Token_SameClientDifferentDatabase = config["s01Token_SameClientDifferentDatabase"].ToString();
+
         public byte[] AESKey;
         public byte[] AESIV;
         public string Endpoint;
@@ -64,6 +73,19 @@ namespace EZClaimAPIHelper.UT
             string encryptedString = Convert.ToBase64String(AESHelper.EncryptStringToBytes(APIBody, AESKey, AESIV));
 
             Response = APIHelper.RunAPICall(Endpoint, method, encryptedString, Token, Convert.ToBase64String(AESIV), GetEncryptedAESKey(), BaseAddress);
+
+            SetupResponseValues(setResponseValues);
+        }
+
+        public void RunAPICall_Manually(HttpMethod method, string body, string token, string aesIV, string aesKey, bool setResponseValues = true)
+        {
+            Response = APIHelper.RunAPICall(Endpoint, method, body, token, aesIV, aesKey, BaseAddress);
+
+            SetupResponseValues(setResponseValues);
+        }
+
+        public void SetupResponseValues(bool setResponseValues = true)
+        {
             ResponseStatus = (int)Response.StatusCode;
             ResponseContent = Response.Content.ReadAsStringAsync().Result;
 

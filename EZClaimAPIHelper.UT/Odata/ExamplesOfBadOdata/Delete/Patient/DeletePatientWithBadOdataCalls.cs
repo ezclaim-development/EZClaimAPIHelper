@@ -8,31 +8,31 @@ using Xunit.Abstractions;
 
 namespace EZClaimAPIHelper.UT
 {
-    public partial class SelectPatientWithBadOdataCalls_UT
+    public partial class DeletePatientWithBadOdataCalls_UT
     {
         private readonly ITestOutputHelper output;
 
         private List<string> expectedContainsValuesList = new();
         private string queryValue;
 
-        public SelectPatientWithBadOdataCalls_UT(ITestOutputHelper output)
+        public DeletePatientWithBadOdataCalls_UT(ITestOutputHelper output)
         {
             this.output = output;
         }
 
         /// <summary>
-        /// Method used by all SelectPatientWithBadFilterOdata methods.
+        /// Method used by all DeletePatientWithBadFilterOdata methods.
         /// </summary>
         /// <param name="apiHelperObject"></param>
-        private void selectPatientWithBadOdata(ref APIUnitTestHelperObject apiHelperObject, string query, bool skipAssert = false)
+        private void deletePatientWithBadOdata(ref APIUnitTestHelperObject apiHelperObject, string query, bool skipAssert = false)
         {
             apiHelperObject.APIBody = $@"{{
                     ""Query"": ""{query}""
                 }}";
 
-            apiHelperObject.Endpoint = "/api/v2/Patients/GetList";
+            apiHelperObject.Endpoint = "/api/v2/Patients/query";
 
-            apiHelperObject.RunAPICall(HttpMethod.Post);
+            apiHelperObject.RunAPICall(HttpMethod.Delete);
 
             if (!skipAssert)
             {
@@ -40,16 +40,16 @@ namespace EZClaimAPIHelper.UT
             }
         }
 
-        private void selectPatientWithBadOdata_ExpectedOutcomeEquals(ref APIUnitTestHelperObject apiHelperObject, string query, string expectedValue)
+        private void deletePatientWithBadOdata_ExpectedOutcomeEquals(ref APIUnitTestHelperObject apiHelperObject, string query, string expectedValue)
         {
-            selectPatientWithBadOdata(ref apiHelperObject, query);
+            deletePatientWithBadOdata(ref apiHelperObject, query);
 
             Assert.Equal(expectedValue, apiHelperObject.ResponseErrorResult["description"]);
         }
 
-        private void selectPatientWithBadOdata_ExpectedOutcomeContains(ref APIUnitTestHelperObject apiHelperObject, string query, List<string> expectedContainsValues)
+        private void deletePatientWithBadOdata_ExpectedOutcomeContains(ref APIUnitTestHelperObject apiHelperObject, string query, List<string> expectedContainsValues)
         {
-            selectPatientWithBadOdata(ref apiHelperObject, query);
+            deletePatientWithBadOdata(ref apiHelperObject, query);
 
             foreach (string expectedContainsValue in expectedContainsValues)
             {
@@ -57,9 +57,9 @@ namespace EZClaimAPIHelper.UT
             }
         }
 
-        private void selectPatientWithBadOdata_printOutcome(ref APIUnitTestHelperObject apiHelperObject, string query)
+        private void deletePatientWithBadOdata_PrintOutcome(ref APIUnitTestHelperObject apiHelperObject, string query)
         {
-            selectPatientWithBadOdata(ref apiHelperObject, query, true);
+            deletePatientWithBadOdata(ref apiHelperObject, query, true);
 
             output.WriteLine($"queryValue = \"{query}\";");
             output.WriteLine("");
@@ -76,7 +76,7 @@ namespace EZClaimAPIHelper.UT
 
                 if (splitDescription.Length == 1)
                 {
-                    output.WriteLine($"selectPatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, \"{description}\");");
+                    output.WriteLine($"deletePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, \"{description}\");");
                 }
                 else
                 {
@@ -91,7 +91,7 @@ namespace EZClaimAPIHelper.UT
                     }
 
                     output.WriteLine("");
-                    output.WriteLine("selectPatientWithBadOdata_ExpectedOutcomeContains(ref apiHelperObject, queryValue, expectedContainsValuesList);");
+                    output.WriteLine("deletePatientWithBadOdata_ExpectedOutcomeContains(ref apiHelperObject, queryValue, expectedContainsValuesList);");
                 }
 
                 output.WriteLine("");

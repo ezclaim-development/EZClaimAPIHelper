@@ -12,92 +12,94 @@ using Xunit.Abstractions;
 
 namespace EZClaimAPIHelper.UT
 {
-    public class FullCrudPatient_UT
+    public class FullCrudClaim_Insured_UT
     {
         private readonly ITestOutputHelper output;
 
-        public FullCrudPatient_UT(ITestOutputHelper output)
+        public FullCrudClaim_Insured_UT(ITestOutputHelper output)
         {
             this.output = output;
         }
 
         /// <summary>
-        /// Runs a full gambit of tests on the patient endpoints. It pauses for 3 seconds between endpoint calls to make sure it doesn't get rate limited.
+        /// Runs a full gambit of tests on the Claim_Insured endpoints. It pauses for 3 seconds between endpoint calls to make sure it doesn't get rate limited.
         /// </summary>
         [Fact(Skip = "This is used for example purposes only. It can be run, but there's no point.")]
-        public void LiveCall_FullCrudPatient()
+        public void LiveCall_FullCrudClaim_Insured()
         {
             using (Aes aes = Aes.Create())
             {
-                //APIUnitTestHelperObject apiHelperObject = new(aes.Key, aes.IV, ExampleRSAPublicKey, s01Token, "https://localhost:44320");
+                //APIUnitTestHelperObject apiHelperObject = new(aes.Key, aes.IV, APIUnitTestHelperObject.ExampleRSAPublicKey, APIUnitTestHelperObject.s01Token, "https://localhost:44320");
                 APIUnitTestHelperObject apiHelperObject = new(aes.Key, aes.IV, APIUnitTestHelperObject.ProductionRSAPublicKey, APIUnitTestHelperObject.TestToken, "https://ezclaimapidev.azurewebsites.net");
 
-                selectTop1Patient(ref apiHelperObject);
+                selectTop1Claim_Insured(ref apiHelperObject);
 
                 Thread.Sleep(3000);
 
-                create6TestPatients(ref apiHelperObject);
+                create6TestClaim_Insureds(ref apiHelperObject);
 
                 Thread.Sleep(3000);
 
-                create1Patient(ref apiHelperObject);
+                create1Claim_Insured(ref apiHelperObject);
 
                 Thread.Sleep(3000);
 
-                selectPatientsWithLastNameAPIPatientLastName(ref apiHelperObject, true);
+                selectClaim_InsuredsWithLastNameAPIClaim_InsuredLastName(ref apiHelperObject, true);
 
-                int id1 = (int)apiHelperObject.ResponseData[0].PatID;
-                int id2 = (int)apiHelperObject.ResponseData[1].PatID;
-                int id3 = (int)apiHelperObject.ResponseData[2].PatID;
-
-                Thread.Sleep(3000);
-
-                selectPatientsFromSetNextPageURL(ref apiHelperObject);
+                Guid id1 = (Guid)apiHelperObject.ResponseData[0].ClaInsGUID;
+                Guid id2 = (Guid)apiHelperObject.ResponseData[1].ClaInsGUID;
+                Guid id3 = (Guid)apiHelperObject.ResponseData[2].ClaInsGUID;
 
                 Thread.Sleep(3000);
 
-                seletPatientFromID(ref apiHelperObject, id1, true);
+                selectClaim_InsuredsFromSetNextPageURL(ref apiHelperObject);
 
                 Thread.Sleep(3000);
 
-                updatePatientListFromIDs(ref apiHelperObject, id1, id2, id3);
+                seletClaim_InsuredFromID(ref apiHelperObject, id1, true);
 
                 Thread.Sleep(3000);
 
-                updatePatientZipBasedOnLastName(ref apiHelperObject);
+                updateClaim_InsuredListFromIDs(ref apiHelperObject, id1, id2, id3);
 
                 Thread.Sleep(3000);
 
-                updatePatientFromID(ref apiHelperObject, id1);
+                updateClaim_InsuredZipBasedOnLastName(ref apiHelperObject);
 
                 Thread.Sleep(3000);
 
-                deletePatientFromIDs(ref apiHelperObject, id1, id2, id3);
+                updateClaim_InsuredFromID(ref apiHelperObject, id1);
 
                 Thread.Sleep(3000);
 
-                seletPatientFromID(ref apiHelperObject, id1, false);
+                deleteClaim_InsuredFromIDs(ref apiHelperObject, id1, id2, id3);
 
                 Thread.Sleep(3000);
 
-                deletePatientFromQuery(ref apiHelperObject);
+                seletClaim_InsuredFromID(ref apiHelperObject, id1, false);
 
                 Thread.Sleep(3000);
 
-                selectPatientsWithLastNameAPIPatientLastName(ref apiHelperObject, false);
+                deleteClaim_InsuredFromQuery(ref apiHelperObject);
+
+                Thread.Sleep(3000);
+
+                selectClaim_InsuredsWithLastNameAPIClaim_InsuredLastName(ref apiHelperObject, false);
             }
         }
 
         /// <summary>
-        /// Example creating 1 patient record
+        /// Example creating 1 Claim_Insured record
         /// </summary>
         /// <param name="apiHelperObject"></param>
-        private void create1Patient(ref APIUnitTestHelperObject apiHelperObject)
+        private void create1Claim_Insured(ref APIUnitTestHelperObject apiHelperObject)
         {
-            apiHelperObject.Endpoint = "/api/v2/Patients";
+            apiHelperObject.Endpoint = "/api/v2/Claim_Insureds";
             apiHelperObject.APIBody = @"{
-                    ""PatFirstName"": ""APIPatientFirstName7"",
-                    ""PatLastName"":""APIPatientLastName""
+                    ""ClaInsFirstName"": ""APIClaim_InsuredFirstName1"",
+                    ""ClaInsLastName"": ""APIClaim_InsuredLastName"",
+                    ""ClaInsClaFID"": ""1"",
+                    ""ClaInsSequence"":""1""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Post);
@@ -108,37 +110,49 @@ namespace EZClaimAPIHelper.UT
         }
 
         /// <summary>
-        /// Example creating 6 patient records
+        /// Example creating 6 Claim_Insured records
         /// </summary>
         /// <param name="apiHelperObject"></param>
-        private void create6TestPatients(ref APIUnitTestHelperObject apiHelperObject)
+        private void create6TestClaim_Insureds(ref APIUnitTestHelperObject apiHelperObject)
         {
-            apiHelperObject.Endpoint = "/api/v2/Patients/list";
+            apiHelperObject.Endpoint = "/api/v2/Claim_Insureds/list";
 
             apiHelperObject.APIBody = @"[
                     {
-                    ""PatFirstName"": ""APIPatientFirstName1"",
-                    ""PatLastName"":""APIPatientLastName""
+                    ""ClaInsFirstName"": ""APIClaim_InsuredFirstName2"",
+                    ""ClaInsLastName"": ""APIClaim_InsuredLastName"",
+                    ""ClaInsClaFID"": ""1"",
+                    ""ClaInsSequence"":""2""
                     },
                     {
-                    ""PatFirstName"": ""APIPatientFirstName2"",
-                    ""PatLastName"":""APIPatientLastName""
+                    ""ClaInsFirstName"": ""APIClaim_InsuredFirstName3"",
+                    ""ClaInsLastName"": ""APIClaim_InsuredLastName"",
+                    ""ClaInsClaFID"": ""1"",
+                    ""ClaInsSequence"":""3""
                     },
                     {
-                    ""PatFirstName"": ""APIPatientFirstName3"",
-                    ""PatLastName"":""APIPatientLastName""
+                    ""ClaInsFirstName"": ""APIClaim_InsuredFirstName4"",
+                    ""ClaInsLastName"": ""APIClaim_InsuredLastName"",
+                    ""ClaInsClaFID"": ""1"",
+                    ""ClaInsSequence"":""4""
                     },
                     {
-                    ""PatFirstName"": ""APIPatientFirstName4"",
-                    ""PatLastName"":""APIPatientLastName""
+                    ""ClaInsFirstName"": ""APIClaim_InsuredFirstName5"",
+                    ""ClaInsLastName"": ""APIClaim_InsuredLastName"",
+                    ""ClaInsClaFID"": ""1"",
+                    ""ClaInsSequence"":""5""
                     },
                     {
-                    ""PatFirstName"": ""APIPatientFirstName5"",
-                    ""PatLastName"":""APIPatientLastName""
+                    ""ClaInsFirstName"": ""APIClaim_InsuredFirstName6"",
+                    ""ClaInsLastName"": ""APIClaim_InsuredLastName"",
+                    ""ClaInsClaFID"": ""1"",
+                    ""ClaInsSequence"":""6""
                     },
                     {
-                    ""PatFirstName"": ""APIPatientFirstName6"",
-                    ""PatLastName"":""APIPatientLastName""
+                    ""ClaInsFirstName"": ""APIClaim_InsuredFirstName7"",
+                    ""ClaInsLastName"": ""APIClaim_InsuredLastName"",
+                    ""ClaInsClaFID"": ""1"",
+                    ""ClaInsSequence"":""7""
                     }
                 ]";
 
@@ -150,17 +164,17 @@ namespace EZClaimAPIHelper.UT
         }
 
         /// <summary>
-        /// Example deleting 3 patient records based on id's
+        /// Example deleting 3 Claim_Insured records based on id's
         /// </summary>
         /// <param name="apiHelperObject"></param>
         /// <param name="id1"></param>
         /// <param name="id2"></param>
         /// <param name="id3"></param>
-        private void deletePatientFromIDs(ref APIUnitTestHelperObject apiHelperObject, int id1, int id2, int id3)
+        private void deleteClaim_InsuredFromIDs(ref APIUnitTestHelperObject apiHelperObject, Guid id1, Guid id2, Guid id3)
         {
-            apiHelperObject.Endpoint = "/api/v2/Patients/ids";
+            apiHelperObject.Endpoint = "/api/v2/Claim_Insureds/ids";
 
-            apiHelperObject.APIBody = @$"[{id1}, {id2}, {id3}]";
+            apiHelperObject.APIBody = @$"[""{id1}"", ""{id2}"", ""{id3}""]";
 
             apiHelperObject.RunAPICall(HttpMethod.Delete);
 
@@ -170,16 +184,16 @@ namespace EZClaimAPIHelper.UT
         }
 
         /// <summary>
-        /// Example of deleting patient records based on a query
+        /// Example of deleting Claim_Insured records based on a query
         /// </summary>
         /// <param name="apiHelperObject"></param>
-        private void deletePatientFromQuery(ref APIUnitTestHelperObject apiHelperObject)
+        private void deleteClaim_InsuredFromQuery(ref APIUnitTestHelperObject apiHelperObject)
         {
 
-            apiHelperObject.Endpoint = "/api/v2/Patients/query";
+            apiHelperObject.Endpoint = "/api/v2/Claim_Insureds/query";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=PatLastName eq 'APIPatientLastName'""
+                    ""Query"": ""$filter=ClaInsLastName eq 'APIClaim_InsuredLastName'""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Delete);
@@ -190,14 +204,14 @@ namespace EZClaimAPIHelper.UT
         }
 
         /// <summary>
-        /// Example of selecting a patient based on an id
+        /// Example of selecting a Claim_Insured based on an id
         /// </summary>
         /// <param name="apiHelperObject"></param>
         /// <param name="id1"></param>
         /// <param name="isSuccessful"></param>
-        private void seletPatientFromID(ref APIUnitTestHelperObject apiHelperObject, int id1, bool isSuccessful)
+        private void seletClaim_InsuredFromID(ref APIUnitTestHelperObject apiHelperObject, Guid id1, bool isSuccessful)
         {
-            apiHelperObject.Endpoint = $"/api/v2/Patients/{id1}";
+            apiHelperObject.Endpoint = $"/api/v2/Claim_Insureds/{id1}";
 
             apiHelperObject.APIBody = @"{}";
 
@@ -218,16 +232,16 @@ namespace EZClaimAPIHelper.UT
         }
 
         /// <summary>
-        /// Select patients based on query
+        /// Select Claim_Insureds based on query
         /// </summary>
         /// <param name="apiHelperObject"></param>
         /// <param name="isSuccessful"></param>
-        private void selectPatientsWithLastNameAPIPatientLastName(ref APIUnitTestHelperObject apiHelperObject, bool isSuccessful)
+        private void selectClaim_InsuredsWithLastNameAPIClaim_InsuredLastName(ref APIUnitTestHelperObject apiHelperObject, bool isSuccessful)
         {
-            apiHelperObject.Endpoint = "/api/v2/Patients/GetList";
+            apiHelperObject.Endpoint = "/api/v2/Claim_Insureds/GetList";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=PatLastName eq 'APIPatientLastName'""
+                    ""Query"": ""$filter=ClaInsLastName eq 'APIClaim_InsuredLastName'""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Post);
@@ -243,11 +257,11 @@ namespace EZClaimAPIHelper.UT
 
                 string nextPageURL = apiHelperObject.ResponseDynamicResult.NextPageURL;
 
-                Assert.Equal($"{apiHelperObject.BaseAddress}/api/v2/Patients/page/2", nextPageURL);
+                Assert.Equal($"{apiHelperObject.BaseAddress}/api/v2/Claim_Insureds/page/2", nextPageURL);
 
                 string query = apiHelperObject.ResponseDynamicResult.Query;
 
-                Assert.Equal("$filter=PatLastName eq 'APIPatientLastName'", query);
+                Assert.Equal("$filter=ClaInsLastName eq 'APIClaim_InsuredLastName'", query);
             }
             else
             {
@@ -258,10 +272,10 @@ namespace EZClaimAPIHelper.UT
         }
 
         /// <summary>
-        /// Example of selecting a patient based on the returned NextPageURL
+        /// Example of selecting a Claim_Insured based on the returned NextPageURL
         /// </summary>
         /// <param name="apiHelperObject"></param>
-        private void selectPatientsFromSetNextPageURL(ref APIUnitTestHelperObject apiHelperObject)
+        private void selectClaim_InsuredsFromSetNextPageURL(ref APIUnitTestHelperObject apiHelperObject)
         {
             apiHelperObject.Endpoint = apiHelperObject.ResponseDynamicResult.NextPageURL;
 
@@ -273,12 +287,12 @@ namespace EZClaimAPIHelper.UT
         }
 
         /// <summary>
-        /// Example of selecting the first patient record.
+        /// Example of selecting the first Claim_Insured record.
         /// </summary>
         /// <param name="apiHelperObject"></param>
-        private void selectTop1Patient(ref APIUnitTestHelperObject apiHelperObject)
+        private void selectTop1Claim_Insured(ref APIUnitTestHelperObject apiHelperObject)
         {
-            apiHelperObject.Endpoint = "/api/v2/Patients/GetList";
+            apiHelperObject.Endpoint = "/api/v2/Claim_Insureds/GetList";
 
             apiHelperObject.APIBody = @"{
                   ""Query"": ""$top=1""
@@ -292,28 +306,28 @@ namespace EZClaimAPIHelper.UT
         }
 
         /// <summary>
-        /// Example of updating 3 patient records based on id's
+        /// Example of updating 3 Claim_Insured records based on id's
         /// </summary>
         /// <param name="apiHelperObject"></param>
         /// <param name="id1"></param>
         /// <param name="id2"></param>
         /// <param name="id3"></param>
-        private void updatePatientListFromIDs(ref APIUnitTestHelperObject apiHelperObject, int id1, int id2, int id3)
+        private void updateClaim_InsuredListFromIDs(ref APIUnitTestHelperObject apiHelperObject, Guid id1, Guid id2, Guid id3)
         {
-            apiHelperObject.Endpoint = "/api/v2/Patients/list";
+            apiHelperObject.Endpoint = "/api/v2/Claim_Insureds/list";
 
             apiHelperObject.APIBody = @$"[
                         {{
-                            ""patZip"": ""55551"",
-                            ""patID"": {id1}
+                            ""ClaInsZip"": ""55551"",
+                            ""ClaInsGUID"": ""{id1}""
                         }},
                         {{
-                            ""patZip"": ""55552"",
-                            ""patID"": {id2}
+                            ""ClaInsZip"": ""55552"",
+                            ""ClaInsGUID"": ""{id2}""
                         }},
                         {{
-                            ""patZip"": ""55553"",
-                            ""patID"": {id3}
+                            ""ClaInsZip"": ""55553"",
+                            ""ClaInsGUID"": ""{id3}""
                         }}
                     ]";
 
@@ -323,25 +337,25 @@ namespace EZClaimAPIHelper.UT
 
             Assert.Equal(3, apiHelperObject.ResponseData.Count);
 
-            Assert.Equal(55551, (int)apiHelperObject.ResponseData[0].PatZip);
-            Assert.Equal(55552, (int)apiHelperObject.ResponseData[1].PatZip);
-            Assert.Equal(55553, (int)apiHelperObject.ResponseData[2].PatZip);
+            Assert.Equal(55551, (int)apiHelperObject.ResponseData[0].ClaInsZip);
+            Assert.Equal(55552, (int)apiHelperObject.ResponseData[1].ClaInsZip);
+            Assert.Equal(55553, (int)apiHelperObject.ResponseData[2].ClaInsZip);
         }
 
         /// <summary>
-        /// Example of updating patients based on a query
+        /// Example of updating Claim_Insureds based on a query
         /// </summary>
         /// <param name="apiHelperObject"></param>
-        private void updatePatientZipBasedOnLastName(ref APIUnitTestHelperObject apiHelperObject)
+        private void updateClaim_InsuredZipBasedOnLastName(ref APIUnitTestHelperObject apiHelperObject)
         {
-            apiHelperObject.Endpoint = "/api/v2/Patients";
+            apiHelperObject.Endpoint = "/api/v2/Claim_Insureds";
 
             apiHelperObject.APIBody = @$"{{
-  ""patientsObject"": {{
-    ""patZip"": ""55555""
+  ""Claim_InsuredsObject"": {{
+    ""ClaInsZip"": ""55555""
   }},
   ""queryString"": {{
-    ""query"": ""$filter=PatLastName eq 'APIPatientLastName'""
+    ""query"": ""$filter=ClaInsLastName eq 'APIClaim_InsuredLastName'""
   }}
 }}";
 
@@ -353,23 +367,23 @@ namespace EZClaimAPIHelper.UT
 
             for (int i = 0; i < 7; i++)
             {
-                Assert.Equal(55555, (int)apiHelperObject.ResponseData[i].PatZip);
+                Assert.Equal(55555, (int)apiHelperObject.ResponseData[i].ClaInsZip);
             }
         }
 
         /// <summary>
-        /// Example of updating 1 patient record based on an id
+        /// Example of updating 1 Claim_Insured record based on an id
         /// </summary>
         /// <param name="apiHelperObject"></param>
         /// <param name="id1"></param>
-        private void updatePatientFromID(ref APIUnitTestHelperObject apiHelperObject, int id1)
+        private void updateClaim_InsuredFromID(ref APIUnitTestHelperObject apiHelperObject, Guid id1)
         {
-            apiHelperObject.Endpoint = "/api/v2/Patients";
+            apiHelperObject.Endpoint = "/api/v2/Claim_Insureds";
 
             apiHelperObject.APIBody = @$"{{
-                  ""patientsObject"": {{
-                    ""patZip"": ""55551"",
-                    ""patID"": {id1}
+                  ""Claim_InsuredsObject"": {{
+                    ""ClaInsZip"": ""55551"",
+                    ""ClaInsGUID"": ""{id1}""
                   }}
                 }}";
 
@@ -379,7 +393,7 @@ namespace EZClaimAPIHelper.UT
 
             Assert.Equal(1, apiHelperObject.ResponseData.Count);
 
-            Assert.Equal(55551, (int)apiHelperObject.ResponseData[0].PatZip);
+            Assert.Equal(55551, (int)apiHelperObject.ResponseData[0].ClaInsZip);
         }
     }
 }
