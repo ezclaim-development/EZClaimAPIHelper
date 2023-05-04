@@ -179,7 +179,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Tasks/query";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=TaskSubject eq 'APITask'""
+                    ""Query"": ""$filter=TaskSubject eq \""APITask\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Delete);
@@ -227,7 +227,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Tasks/GetList";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=TaskSubject eq 'APITask'""
+                    ""Query"": ""$filter=TaskSubject eq \""APITask\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Post);
@@ -247,7 +247,7 @@ namespace EZClaimAPIHelper.UT
 
                 string query = apiHelperObject.ResponseDynamicResult.Query;
 
-                Assert.Equal("$filter=TaskSubject eq 'APITask'", query);
+                Assert.Equal(@"$filter=TaskSubject eq ""APITask""", query);
             }
             else
             {
@@ -341,7 +341,7 @@ namespace EZClaimAPIHelper.UT
     ""TaskStatus"": ""Completed""
   }},
   ""queryString"": {{
-    ""query"": ""$filter=TaskSubject eq 'APITask'""
+    ""query"": ""$filter=TaskSubject eq \""APITask\""""
   }}
 }}";
 

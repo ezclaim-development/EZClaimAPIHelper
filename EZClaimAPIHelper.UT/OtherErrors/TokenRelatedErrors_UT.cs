@@ -167,7 +167,7 @@ namespace EZClaimAPIHelper.UT
 
                 apiHelperObject.Endpoint = "/api/v2/Patients/query";
                 apiHelperObject.APIBody = $@"{{
-                    ""Query"": ""$filter=PatLastName eq 'APIPatientLastName'""
+                    ""Query"": ""$filter=PatLastName eq \""APIPatientLastName\""""
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_SelectPatient;
 
@@ -177,7 +177,7 @@ namespace EZClaimAPIHelper.UT
 
                 apiHelperObject.Endpoint = "/api/v2/Patients/query";
                 apiHelperObject.APIBody = $@"{{
-                    ""Query"": ""$filter=PatLastName eq 'APIPatientLastName'""
+                    ""Query"": ""$filter=PatLastName eq \""APIPatientLastName\""""
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_CreatePatient;
 
@@ -187,7 +187,7 @@ namespace EZClaimAPIHelper.UT
 
                 apiHelperObject.Endpoint = "/api/v2/Patients/query";
                 apiHelperObject.APIBody = $@"{{
-                    ""Query"": ""$filter=PatLastName eq 'APIPatientLastName'""
+                    ""Query"": ""$filter=PatLastName eq \""APIPatientLastName\""""
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_UpdatePatient;
 
@@ -328,7 +328,7 @@ namespace EZClaimAPIHelper.UT
 
                 apiHelperObject.Endpoint = "/api/v2/Claims/query";
                 apiHelperObject.APIBody = $@"{{
-                    ""Query"": ""$filter=PatLastName eq 'APIPatientLastName'""
+                    ""Query"": ""$filter=PatLastName eq \""APIPatientLastName\""""
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_SelectPatient;
 
@@ -338,7 +338,7 @@ namespace EZClaimAPIHelper.UT
 
                 apiHelperObject.Endpoint = "/api/v2/Claims/query";
                 apiHelperObject.APIBody = $@"{{
-                    ""Query"": ""$filter=PatLastName eq 'APIPatientLastName'""
+                    ""Query"": ""$filter=PatLastName eq \""APIPatientLastName\""""
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_CreatePatient;
 
@@ -348,7 +348,7 @@ namespace EZClaimAPIHelper.UT
 
                 apiHelperObject.Endpoint = "/api/v2/Claims/query";
                 apiHelperObject.APIBody = $@"{{
-                    ""Query"": ""$filter=PatLastName eq 'APIPatientLastName'""
+                    ""Query"": ""$filter=PatLastName eq \""APIPatientLastName\""""
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_UpdatePatient;
 

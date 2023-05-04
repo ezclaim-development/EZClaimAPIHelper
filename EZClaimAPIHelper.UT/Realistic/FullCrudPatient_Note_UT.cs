@@ -186,7 +186,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Patient_Notes/query";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=PatNoteUserName eq 'APIPatient_NoteUserName'""
+                    ""Query"": ""$filter=PatNoteUserName eq \""APIPatient_NoteUserName\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Delete);
@@ -234,7 +234,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Patient_Notes/GetList";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=PatNoteUserName eq 'APIPatient_NoteUserName'""
+                    ""Query"": ""$filter=PatNoteUserName eq \""APIPatient_NoteUserName\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Post);
@@ -254,7 +254,7 @@ namespace EZClaimAPIHelper.UT
 
                 string query = apiHelperObject.ResponseDynamicResult.Query;
 
-                Assert.Equal("$filter=PatNoteUserName eq 'APIPatient_NoteUserName'", query);
+                Assert.Equal(@"$filter=PatNoteUserName eq ""APIPatient_NoteUserName""", query);
             }
             else
             {
@@ -348,7 +348,7 @@ namespace EZClaimAPIHelper.UT
     ""PatNoteEvent"": ""Edited""
   }},
   ""queryString"": {{
-    ""query"": ""$filter=PatNoteUserName eq 'APIPatient_NoteUserName'""
+    ""query"": ""$filter=PatNoteUserName eq \""APIPatient_NoteUserName\""""
   }}
 }}";
 

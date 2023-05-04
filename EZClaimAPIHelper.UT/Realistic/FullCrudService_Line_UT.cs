@@ -200,7 +200,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Service_Lines/query";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=SrvCustomField1 eq 'APIService_Line'""
+                    ""Query"": ""$filter=SrvCustomField1 eq \""APIService_Line\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Delete);
@@ -248,7 +248,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Service_Lines/GetList";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=SrvCustomField1 eq 'APIService_Line'""
+                    ""Query"": ""$filter=SrvCustomField1 eq \""APIService_Line\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Post);
@@ -268,7 +268,7 @@ namespace EZClaimAPIHelper.UT
 
                 string query = apiHelperObject.ResponseDynamicResult.Query;
 
-                Assert.Equal("$filter=SrvCustomField1 eq 'APIService_Line'", query);
+                Assert.Equal(@"$filter=SrvCustomField1 eq ""APIService_Line""", query);
             }
             else
             {
@@ -362,7 +362,7 @@ namespace EZClaimAPIHelper.UT
     ""SrvCharges"": ""54""
   }},
   ""queryString"": {{
-    ""query"": ""$filter=SrvCustomField1 eq 'APIService_Line'""
+    ""query"": ""$filter=SrvCustomField1 eq \""APIService_Line\""""
   }}
 }}";
 

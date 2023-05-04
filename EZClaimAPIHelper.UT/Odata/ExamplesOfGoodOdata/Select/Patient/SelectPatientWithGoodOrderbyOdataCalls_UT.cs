@@ -21,6 +21,7 @@ namespace EZClaimAPIHelper.UT
                 //APIUnitTestHelperObject apiHelperObject = new(aes.Key, aes.IV, APIUnitTestHelperObject.ExampleRSAPublicKey, APIUnitTestHelperObject.s01Token, "https://localhost:44320");
                 APIUnitTestHelperObject apiHelperObject = new(aes.Key, aes.IV, APIUnitTestHelperObject.ProductionRSAPublicKey, APIUnitTestHelperObject.TestToken, "https://ezclaimapidev.azurewebsites.net");
 
+
                 queryValue = "$orderby=patid";
 
                 SelectPatientWithGoodOdata(ref apiHelperObject, queryValue);

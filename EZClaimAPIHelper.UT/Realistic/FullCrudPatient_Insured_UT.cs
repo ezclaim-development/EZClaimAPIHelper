@@ -193,7 +193,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Patient_Insureds/query";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=PatInsEligStatus eq 'APIPatIns'""
+                    ""Query"": ""$filter=PatInsEligStatus eq \""APIPatIns\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Delete);
@@ -241,7 +241,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Patient_Insureds/GetList";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=PatInsEligStatus eq 'APIPatIns'""
+                    ""Query"": ""$filter=PatInsEligStatus eq \""APIPatIns\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Post);
@@ -261,7 +261,7 @@ namespace EZClaimAPIHelper.UT
 
                 string query = apiHelperObject.ResponseDynamicResult.Query;
 
-                Assert.Equal("$filter=PatInsEligStatus eq 'APIPatIns'", query);
+                Assert.Equal(@"$filter=PatInsEligStatus eq ""APIPatIns""", query);
             }
             else
             {
@@ -358,7 +358,7 @@ namespace EZClaimAPIHelper.UT
     ""PatInsEligDate"": ""2023-03-04""
   }},
   ""queryString"": {{
-    ""query"": ""$filter=PatInsEligStatus eq 'APIPatIns'""
+    ""query"": ""$filter=PatInsEligStatus eq \""APIPatIns\""""
   }}
 }}";
 

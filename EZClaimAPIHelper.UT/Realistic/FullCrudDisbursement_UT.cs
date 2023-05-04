@@ -193,7 +193,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Disbursements/query";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=DisbNote eq 'APIDisbursement'""
+                    ""Query"": ""$filter=DisbNote eq \""APIDisbursement\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Delete);
@@ -241,7 +241,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Disbursements/GetList";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=DisbNote eq 'APIDisbursement'""
+                    ""Query"": ""$filter=DisbNote eq \""APIDisbursement\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Post);
@@ -261,7 +261,7 @@ namespace EZClaimAPIHelper.UT
 
                 string query = apiHelperObject.ResponseDynamicResult.Query;
 
-                Assert.Equal("$filter=DisbNote eq 'APIDisbursement'", query);
+                Assert.Equal(@"$filter=DisbNote eq ""APIDisbursement""", query);
             }
             else
             {
@@ -355,7 +355,7 @@ namespace EZClaimAPIHelper.UT
     ""DisbCode"": ""4""
   }},
   ""queryString"": {{
-    ""query"": ""$filter=DisbNote eq 'APIDisbursement'""
+    ""query"": ""$filter=DisbNote eq \""APIDisbursement\""""
   }}
 }}";
 

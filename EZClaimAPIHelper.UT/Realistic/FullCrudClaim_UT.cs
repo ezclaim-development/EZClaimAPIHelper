@@ -44,6 +44,14 @@ namespace EZClaimAPIHelper.UT
 
                 Thread.Sleep(3000);
 
+                create1ClaimWithChildren(ref apiHelperObject);
+
+                Thread.Sleep(3000);
+
+                create2ClaimsWithChildren(ref apiHelperObject);
+
+                Thread.Sleep(3000);
+
                 selectClaimsWithLastNameAPIClaimLastName(ref apiHelperObject, true);
 
                 int id1 = (int)apiHelperObject.ResponseData[0].ClaID;
@@ -108,6 +116,46 @@ namespace EZClaimAPIHelper.UT
         }
 
         /// <summary>
+        /// Example creating 1 Claim record
+        /// </summary>
+        /// <param name="apiHelperObject"></param>
+        private void create1ClaimWithChildren(ref APIUnitTestHelperObject apiHelperObject)
+        {
+            apiHelperObject.Endpoint = "/api/v2/Claims";
+            apiHelperObject.APIBody = @"{
+                    ""ClaPatFID"": ""1"",
+                    ""ClaDiagnosis1"":""APIClaimDiagnosis"",
+                        ""claim_InsuredsObjectWithoutID"": [
+                            {
+                                ""ClaInsFirstName"": ""APIClaim_InsuredFirstName1"",
+                                ""ClaInsLastName"": ""APIClaim_InsuredLastName"",
+                                ""ClaInsSequence"":""1""
+                            }
+                        ],
+                        ""claim_NotesObjectWithoutID"": [
+                            {
+                                ""ClaNoteEvent"": ""Created"",
+                                ""ClaNoteUserName"":""APIClaim_NotesLastName""
+                            }
+                        ],
+                        ""service_LinesObjectWithoutID"": [
+                            {
+                                ""SrvFromDate"": ""2023-01-01"",
+                                ""SrvToDate"": ""2023-03-07"",
+                                ""SrvRespChangeDate"": ""2023-03-07"",
+                                ""SrvCustomField1"":""APIService_Line""
+                            }
+                        ]
+                }";
+
+            apiHelperObject.RunAPICall(HttpMethod.Post);
+
+            Assert.Equal(200, apiHelperObject.ResponseStatus);
+
+            Assert.Equal(4, apiHelperObject.ResponseData.Count);
+        }
+
+        /// <summary>
         /// Example creating 6 Claim records
         /// </summary>
         /// <param name="apiHelperObject"></param>
@@ -150,6 +198,78 @@ namespace EZClaimAPIHelper.UT
         }
 
         /// <summary>
+        /// Example creating 6 Claim records
+        /// </summary>
+        /// <param name="apiHelperObject"></param>
+        private void create2ClaimsWithChildren(ref APIUnitTestHelperObject apiHelperObject)
+        {
+            apiHelperObject.Endpoint = "/api/v2/Claims/list";
+
+            apiHelperObject.APIBody = @"[
+                    {
+                    ""ClaPatFID"": ""1"",
+                    ""ClaDiagnosis1"":""APIClaimDiagnosis"",
+                        ""claim_InsuredsObjectWithoutID"": [
+                            {
+                                ""ClaInsFirstName"": ""APIClaim_InsuredFirstName1"",
+                                ""ClaInsLastName"": ""APIClaim_InsuredLastName"",
+                                ""ClaInsSequence"":""1""
+                            }
+                        ],
+                        ""claim_NotesObjectWithoutID"": [
+                            {
+                                ""ClaNoteEvent"": ""Created"",
+                                ""ClaNoteUserName"":""APIClaim_NotesLastName""
+                            }
+                        ],
+                        ""service_LinesObjectWithoutID"": [
+                            {
+                                ""SrvFromDate"": ""2023-01-01"",
+                                ""SrvToDate"": ""2023-03-07"",
+                                ""SrvRespChangeDate"": ""2023-03-07"",
+                                ""SrvCustomField1"":""APIService_Line""
+                            }
+                        ],
+                    },
+                    {
+                    ""ClaPatFID"": ""1"",
+                    ""ClaDiagnosis1"":""APIClaimDiagnosis"",
+                        ""claim_InsuredsObjectWithoutID"": [
+                            {
+                                ""ClaInsFirstName"": ""APIClaim_InsuredFirstName1"",
+                                ""ClaInsLastName"": ""APIClaim_InsuredLastName"",
+                                ""ClaInsSequence"":""1""
+                            }
+                        ],
+                        ""claim_NotesObjectWithoutID"": [
+                            {
+                                ""ClaNoteEvent"": ""Created"",
+                                ""ClaNoteUserName"":""APIClaim_NotesLastName1""
+                            },
+                            {
+                                ""ClaNoteEvent"": ""Created"",
+                                ""ClaNoteUserName"":""APIClaim_NotesLastName2""
+                            }
+                        ],
+                        ""service_LinesObjectWithoutID"": [
+                            {
+                                ""SrvFromDate"": ""2023-01-01"",
+                                ""SrvToDate"": ""2023-03-07"",
+                                ""SrvRespChangeDate"": ""2023-03-07"",
+                                ""SrvCustomField1"":""APIService_Line""
+                            }
+                        ],
+                    }
+                ]";
+
+            apiHelperObject.RunAPICall(HttpMethod.Post);
+
+            Assert.Equal(200, apiHelperObject.ResponseStatus);
+
+            Assert.Equal(9, apiHelperObject.ResponseData.Count);
+        }
+
+        /// <summary>
         /// Example deleting 3 Claim records based on id's
         /// </summary>
         /// <param name="apiHelperObject"></param>
@@ -179,7 +299,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Claims/query";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=ClaDiagnosis1 eq 'APIClaimDiagnosis'""
+                    ""Query"": ""$filter=ClaDiagnosis1 eq \""APIClaimDiagnosis\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Delete);
@@ -227,7 +347,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Claims/GetList";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=ClaDiagnosis1 eq 'APIClaimDiagnosis'""
+                    ""Query"": ""$filter=ClaDiagnosis1 eq \""APIClaimDiagnosis\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Post);
@@ -247,7 +367,7 @@ namespace EZClaimAPIHelper.UT
 
                 string query = apiHelperObject.ResponseDynamicResult.Query;
 
-                Assert.Equal("$filter=ClaDiagnosis1 eq 'APIClaimDiagnosis'", query);
+                Assert.Equal(@"$filter=ClaDiagnosis1 eq ""APIClaimDiagnosis""", query);
             }
             else
             {
@@ -341,7 +461,7 @@ namespace EZClaimAPIHelper.UT
     ""ClaDiagnosis2"": ""APIClaimDiagnosis2_4""
   }},
   ""queryString"": {{
-    ""query"": ""$filter=ClaDiagnosis1 eq 'APIClaimDiagnosis'""
+    ""query"": ""$filter=ClaDiagnosis1 eq \""APIClaimDiagnosis\""""
   }}
 }}";
 

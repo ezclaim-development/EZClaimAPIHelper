@@ -186,7 +186,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Claim_Notes/query";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=ClaNoteUserName eq 'APIClaim_NotesLastName'""
+                    ""Query"": ""$filter=ClaNoteUserName eq \""APIClaim_NotesLastName\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Delete);
@@ -234,7 +234,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Claim_Notes/GetList";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=ClaNoteUserName eq 'APIClaim_NotesLastName'""
+                    ""Query"": ""$filter=ClaNoteUserName eq \""APIClaim_NotesLastName\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Post);
@@ -254,7 +254,7 @@ namespace EZClaimAPIHelper.UT
 
                 string query = apiHelperObject.ResponseDynamicResult.Query;
 
-                Assert.Equal("$filter=ClaNoteUserName eq 'APIClaim_NotesLastName'", query);
+                Assert.Equal(@"$filter=ClaNoteUserName eq ""APIClaim_NotesLastName""", query);
             }
             else
             {
@@ -348,7 +348,7 @@ namespace EZClaimAPIHelper.UT
     ""ClaNoteEvent"": ""Edited""
   }},
   ""queryString"": {{
-    ""query"": ""$filter=ClaNoteUserName eq 'APIClaim_NotesLastName'""
+    ""query"": ""$filter=ClaNoteUserName eq \""APIClaim_NotesLastName\""""
   }}
 }}";
 

@@ -74,7 +74,7 @@ namespace EZClaimAPIHelper.UT
         {
             updatePatientWithGoodOdata(ref apiHelperObject, query, keyValuePairs, true);
 
-            output.WriteLine($"queryValue = \"{query}\";");
+            output.WriteLine($"queryValue = @\"{query.Replace(@"\""", @"\""""")}\";");
             output.WriteLine("");
             output.WriteLine($"patientsObject = new();");
 

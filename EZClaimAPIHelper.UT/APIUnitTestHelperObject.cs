@@ -44,6 +44,7 @@ namespace EZClaimAPIHelper.UT
         public string ResponseContent;
         public dynamic ResponseDynamicResult;
         public dynamic ResponseData;
+        public dynamic ResponseMessage;
         public Dictionary<string, string> ResponseErrorResult;
 
         private string DecryptedResponseContent;
@@ -113,6 +114,11 @@ namespace EZClaimAPIHelper.UT
         {
             ResponseDynamicResult = JsonConvert.DeserializeObject<dynamic>(GetDecryptedResponseContent());
             ResponseData = ResponseDynamicResult.Data;
+            try
+            {
+                ResponseMessage = ResponseDynamicResult.Message;
+            }
+            catch { }
         }
 
         public void SetResponseError()

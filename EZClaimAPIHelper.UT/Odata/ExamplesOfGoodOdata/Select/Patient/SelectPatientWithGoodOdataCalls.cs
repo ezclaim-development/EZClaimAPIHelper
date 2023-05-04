@@ -54,7 +54,7 @@ namespace EZClaimAPIHelper.UT
         {
             SelectPatientWithGoodOdata(ref apiHelperObject, query, true);
 
-            output.WriteLine($"queryValue = \"{query}\";");
+            output.WriteLine($"queryValue = @\"{query.Replace(@"\""", @"\""""")}\";");
             output.WriteLine("");
 
             if (apiHelperObject.ResponseStatus != 200 && !apiHelperObject.ResponseErrorResult["description"].Equals("Query parameters yielded no results."))

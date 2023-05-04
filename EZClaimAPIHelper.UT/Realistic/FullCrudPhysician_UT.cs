@@ -44,6 +44,14 @@ namespace EZClaimAPIHelper.UT
 
                 Thread.Sleep(3000);
 
+                selectPhysicianSimpleList(ref apiHelperObject);
+
+                Thread.Sleep(3000);
+
+                selectPhysicianSimpleListPage(ref apiHelperObject, 1);
+
+                Thread.Sleep(3000);
+
                 selectPhysiciansWithLastNameAPIPhysicianLastName(ref apiHelperObject, true);
 
                 int id1 = (int)apiHelperObject.ResponseData[0].PhyID;
@@ -179,7 +187,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Physicians/query";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=PhyLastName eq 'APIPhysicianLastName'""
+                    ""Query"": ""$filter=PhyLastName eq \""APIPhysicianLastName\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Delete);
@@ -227,7 +235,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Physicians/GetList";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=PhyLastName eq 'APIPhysicianLastName'""
+                    ""Query"": ""$filter=PhyLastName eq \""APIPhysicianLastName\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Post);
@@ -247,7 +255,7 @@ namespace EZClaimAPIHelper.UT
 
                 string query = apiHelperObject.ResponseDynamicResult.Query;
 
-                Assert.Equal("$filter=PhyLastName eq 'APIPhysicianLastName'", query);
+                Assert.Equal(@"$filter=PhyLastName eq ""APIPhysicianLastName""", query);
             }
             else
             {
@@ -270,6 +278,39 @@ namespace EZClaimAPIHelper.UT
             Assert.Equal(200, apiHelperObject.ResponseStatus);
 
             Assert.True(apiHelperObject.ResponseData.Count >= 2);
+        }
+
+        /// <summary>
+        /// Select simple full list of Physicians
+        /// </summary>
+        /// <param name="apiHelperObject"></param>
+        private void selectPhysicianSimpleList(ref APIUnitTestHelperObject apiHelperObject)
+        {
+            apiHelperObject.Endpoint = "/api/v2/Physicians/GetSimpleList";
+
+            apiHelperObject.APIBody = @"";
+
+            apiHelperObject.RunAPICall(HttpMethod.Post);
+
+            Assert.Equal(200, apiHelperObject.ResponseStatus);
+            Assert.True(apiHelperObject.ResponseData.Count > 5);
+        }
+
+        /// <summary>
+        /// Select simple full list of Physicians based on page number
+        /// </summary>
+        /// <param name="apiHelperObject"></param>
+        /// <param name="page"></param>
+        private void selectPhysicianSimpleListPage(ref APIUnitTestHelperObject apiHelperObject, int page)
+        {
+            apiHelperObject.Endpoint = $"/api/v2/Physicians/GetSimpleList/page/{page}";
+
+            apiHelperObject.APIBody = @"";
+
+            apiHelperObject.RunAPICall(HttpMethod.Post);
+
+            Assert.Equal(200, apiHelperObject.ResponseStatus);
+            Assert.True(apiHelperObject.ResponseData.Count > 5);
         }
 
         /// <summary>
@@ -341,7 +382,7 @@ namespace EZClaimAPIHelper.UT
     ""PhyZip"": ""55555""
   }},
   ""queryString"": {{
-    ""query"": ""$filter=PhyLastName eq 'APIPhysicianLastName'""
+    ""query"": ""$filter=PhyLastName eq \""APIPhysicianLastName\""""
   }}
 }}";
 

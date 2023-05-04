@@ -44,6 +44,22 @@ namespace EZClaimAPIHelper.UT
 
                 Thread.Sleep(3000);
 
+                create1PatientWithChildren(ref apiHelperObject);
+
+                Thread.Sleep(3000);
+
+                create2PatientsWithChildren(ref apiHelperObject);
+
+                Thread.Sleep(3000);
+
+                selectPatientSimpleList(ref apiHelperObject);
+
+                Thread.Sleep(3000);
+
+                selectPatientSimpleListPage(ref apiHelperObject, 1);
+
+                Thread.Sleep(3000);
+
                 selectPatientsWithLastNameAPIPatientLastName(ref apiHelperObject, true);
 
                 int id1 = (int)apiHelperObject.ResponseData[0].PatID;
@@ -108,6 +124,67 @@ namespace EZClaimAPIHelper.UT
         }
 
         /// <summary>
+        /// Example creating 1 patient record
+        /// </summary>
+        /// <param name="apiHelperObject"></param>
+        private void create1PatientWithChildren(ref APIUnitTestHelperObject apiHelperObject)
+        {
+            apiHelperObject.Endpoint = "/api/v2/Patients";
+            apiHelperObject.APIBody = @"{
+                    ""PatFirstName"": ""APIPatientFirstName8"",
+                    ""PatLastName"":""APIPatientLastName"",
+                    ""claimsObjectWithoutIDWithChildrenWithoutID"": [
+                    {
+                        ""ClaDiagnosis1"" : ""APIClaimDiagnosis"",
+                        ""claim_InsuredsObjectWithoutID"": [
+                            {
+                                ""ClaInsFirstName"": ""APIClaim_InsuredFirstName1"",
+                                ""ClaInsLastName"": ""APIClaim_InsuredLastName"",
+                                ""ClaInsSequence"":""1""
+                            }
+                        ],
+                        ""claim_NotesObjectWithoutID"": [
+                            {
+                                ""ClaNoteEvent"": ""Created"",
+                                ""ClaNoteUserName"":""APIClaim_NotesLastName""
+                            },
+                            {
+                                ""ClaNoteEvent"": ""Created"",
+                                ""ClaNoteUserName"":""APIClaim_NotesLastName2""
+                            }
+                        ],
+                        ""service_LinesObjectWithoutID"": [
+                            {
+                                ""SrvFromDate"": ""2023-01-01"",
+                                ""SrvToDate"": ""2023-03-07"",
+                                ""SrvRespChangeDate"": ""2023-03-07"",
+                                ""SrvCustomField1"":""APIService_Line""
+                            }
+                        ],
+                    }
+                    ],
+                    ""patient_NotesObjectWithoutID"": [
+                    {
+                        ""PatNoteEvent"": ""Created"",
+                        ""PatNoteUserName"":""APIPatient_NoteUserName""
+                    }
+                    ],
+                    ""paymentsObjectWithoutID"": [
+                    {
+                        ""PmtDate"": ""2023-03-07"",
+                        ""PmtNameOnCard"":""APIPayment""
+                    }
+                    ]
+                }";
+
+            apiHelperObject.RunAPICall(HttpMethod.Post);
+
+            Assert.Equal(200, apiHelperObject.ResponseStatus);
+
+            Assert.Equal(8, apiHelperObject.ResponseData.Count);
+        }
+
+        /// <summary>
         /// Example creating 6 patient records
         /// </summary>
         /// <param name="apiHelperObject"></param>
@@ -149,6 +226,118 @@ namespace EZClaimAPIHelper.UT
             Assert.Equal(6, apiHelperObject.ResponseData.Count);
         }
 
+
+        /// <summary>
+        /// Example creating 6 patient records
+        /// </summary>
+        /// <param name="apiHelperObject"></param>
+        private void create2PatientsWithChildren(ref APIUnitTestHelperObject apiHelperObject)
+        {
+            apiHelperObject.Endpoint = "/api/v2/Patients/list";
+
+            apiHelperObject.APIBody = @"[
+                    {
+                    ""PatFirstName"": ""APIPatientFirstName9"",
+                    ""PatLastName"":""APIPatientLastName"",
+                    ""claimsObjectWithoutIDWithChildrenWithoutID"": [
+                    {
+                        ""ClaDiagnosis1"" : ""APIClaimDiagnosis"",
+                        ""claim_InsuredsObjectWithoutID"": [
+                            {
+                                ""ClaInsFirstName"": ""APIClaim_InsuredFirstName1"",
+                                ""ClaInsLastName"": ""APIClaim_InsuredLastName"",
+                                ""ClaInsSequence"":""1""
+                            }
+                        ],
+                        ""claim_NotesObjectWithoutID"": [
+                            {
+                                ""ClaNoteEvent"": ""Created"",
+                                ""ClaNoteUserName"":""APIClaim_NotesLastName""
+                            }
+                        ],
+                        ""service_LinesObjectWithoutID"": [
+                            {
+                                ""SrvFromDate"": ""2023-01-01"",
+                                ""SrvToDate"": ""2023-03-07"",
+                                ""SrvRespChangeDate"": ""2023-03-07"",
+                                ""SrvCustomField1"":""APIService_Line""
+                            }
+                        ],
+                    }
+                    ],
+                    ""patient_NotesObjectWithoutID"": [
+                    {
+                        ""PatNoteEvent"": ""Created"",
+                        ""PatNoteUserName"":""APIPatient_NoteUserName""
+                    },
+                    {
+                        ""PatNoteEvent"": ""Created"",
+                        ""PatNoteUserName"":""APIPatient_NoteUserName2""
+                    }
+                    ],
+                    ""paymentsObjectWithoutID"": [
+                    {
+                        ""PmtDate"": ""2023-03-07"",
+                        ""PmtNameOnCard"":""APIPayment""
+                    }
+                    ]
+                    },
+                    {
+                    ""PatFirstName"": ""APIPatientFirstName10"",
+                    ""PatLastName"":""APIPatientLastName"",
+                    ""claimsObjectWithoutIDWithChildrenWithoutID"": [
+                    {
+                        ""ClaDiagnosis1"" : ""APIClaimDiagnosis"",
+                        ""claim_InsuredsObjectWithoutID"": [
+                            {
+                                ""ClaInsFirstName"": ""APIClaim_InsuredFirstName1"",
+                                ""ClaInsLastName"": ""APIClaim_InsuredLastName"",
+                                ""ClaInsSequence"":""1""
+                            }
+                        ],
+                        ""claim_NotesObjectWithoutID"": [
+                            {
+                                ""ClaNoteEvent"": ""Created"",
+                                ""ClaNoteUserName"":""APIClaim_NotesLastName""
+                            },
+                            {
+                                ""ClaNoteEvent"": ""Created"",
+                                ""ClaNoteUserName"":""APIClaim_NotesLastName2""
+                            }
+                        ],
+                        ""service_LinesObjectWithoutID"": [
+                            {
+                                ""SrvFromDate"": ""2023-01-01"",
+                                ""SrvToDate"": ""2023-03-07"",
+                                ""SrvRespChangeDate"": ""2023-03-07"",
+                                ""SrvCustomField1"":""APIService_Line""
+                            }
+                        ],
+                    }
+                    ],
+                    ""patient_NotesObjectWithoutID"": [
+                    {
+                        ""PatNoteEvent"": ""Created"",
+                        ""PatNoteUserName"":""APIPatient_NoteUserName""
+                    }
+                    ],
+                    ""paymentsObjectWithoutID"": [
+                    {
+                        ""PmtDate"": ""2023-03-07"",
+                        ""PmtNameOnCard"":""APIPayment""
+                    }
+                    ]
+                    }
+                ]";
+
+            apiHelperObject.RunAPICall(HttpMethod.Post);
+
+            Assert.Equal(200, apiHelperObject.ResponseStatus);
+
+            Assert.Equal(16, apiHelperObject.ResponseData.Count);
+        }
+
+
         /// <summary>
         /// Example deleting 3 patient records based on id's
         /// </summary>
@@ -179,7 +368,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Patients/query";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=PatLastName eq 'APIPatientLastName'""
+                    ""Query"": ""$filter=PatLastName eq \""APIPatientLastName\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Delete);
@@ -227,7 +416,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Patients/GetList";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=PatLastName eq 'APIPatientLastName'""
+                    ""Query"": ""$filter=PatLastName eq \""APIPatientLastName\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Post);
@@ -247,7 +436,7 @@ namespace EZClaimAPIHelper.UT
 
                 string query = apiHelperObject.ResponseDynamicResult.Query;
 
-                Assert.Equal("$filter=PatLastName eq 'APIPatientLastName'", query);
+                Assert.Equal(@"$filter=PatLastName eq ""APIPatientLastName""", query);
             }
             else
             {
@@ -270,6 +459,39 @@ namespace EZClaimAPIHelper.UT
             Assert.Equal(200, apiHelperObject.ResponseStatus);
 
             Assert.True(apiHelperObject.ResponseData.Count >= 2);
+        }
+
+        /// <summary>
+        /// Select simple full list of Patient
+        /// </summary>
+        /// <param name="apiHelperObject"></param>
+        private void selectPatientSimpleList(ref APIUnitTestHelperObject apiHelperObject)
+        {
+            apiHelperObject.Endpoint = "/api/v2/Patients/GetSimpleList";
+
+            apiHelperObject.APIBody = @"";
+
+            apiHelperObject.RunAPICall(HttpMethod.Post);
+
+            Assert.Equal(200, apiHelperObject.ResponseStatus);
+            Assert.True(apiHelperObject.ResponseData.Count > 5);
+        }
+
+        /// <summary>
+        /// Select simple full list of Patient based on page number
+        /// </summary>
+        /// <param name="apiHelperObject"></param>
+        /// <param name="page"></param>
+        private void selectPatientSimpleListPage(ref APIUnitTestHelperObject apiHelperObject, int page)
+        {
+            apiHelperObject.Endpoint = $"/api/v2/Patients/GetSimpleList/page/{page}";
+
+            apiHelperObject.APIBody = @"";
+
+            apiHelperObject.RunAPICall(HttpMethod.Post);
+
+            Assert.Equal(200, apiHelperObject.ResponseStatus);
+            Assert.True(apiHelperObject.ResponseData.Count > 5);
         }
 
         /// <summary>
@@ -341,7 +563,7 @@ namespace EZClaimAPIHelper.UT
     ""patZip"": ""55555""
   }},
   ""queryString"": {{
-    ""query"": ""$filter=PatLastName eq 'APIPatientLastName'""
+    ""query"": ""$filter=PatLastName eq \""APIPatientLastName\""""
   }}
 }}";
 

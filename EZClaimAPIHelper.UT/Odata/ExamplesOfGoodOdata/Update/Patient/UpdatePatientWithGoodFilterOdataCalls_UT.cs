@@ -22,7 +22,7 @@ namespace EZClaimAPIHelper.UT
                 APIUnitTestHelperObject apiHelperObject = new(aes.Key, aes.IV, APIUnitTestHelperObject.ProductionRSAPublicKey, APIUnitTestHelperObject.TestToken, "https://ezclaimapidev.azurewebsites.net");
 
 
-                queryValue = "$filter=Patfirstname ne 'this is a test'";
+                queryValue = @"$filter=Patfirstname ne \""this is a test\""";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -31,7 +31,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$filter=Patfirstname in ('this is a' test')";
+                queryValue = @"$filter=Patfirstname in (\""this is a' test\"")";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -40,7 +40,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$filter=Patfirstname in ('this is a' test', 'this is another' test')";
+                queryValue = @"$filter=Patfirstname in (\""this is a' test\"", \""this is another' test\"")";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -49,7 +49,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$filter=patid in (1,2)";
+                queryValue = @"$filter=patid in (1,2)";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -58,7 +58,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$filter=patid in (1, 2)";
+                queryValue = @"$filter=patid in (1, 2)";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -67,7 +67,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$filter=patid in (1,  2)";
+                queryValue = @"$filter=patid in (1,  2)";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -76,7 +76,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$filter= patid in (1, 2)";
+                queryValue = @"$filter= patid in (1, 2)";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -85,7 +85,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = " $filter=patid in (1, 2)";
+                queryValue = @" $filter=patid in (1, 2)";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -94,7 +94,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$filter=patid eq 1 AND patid eq 1";
+                queryValue = @"$filter=patid eq 1 AND patid eq 1";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -103,7 +103,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$filter=patid ne 1 AND patid ne 1";
+                queryValue = @"$filter=patid ne 1 AND patid ne 1";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -112,7 +112,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$filter=patid ne '1' AND patid ne '1'";
+                queryValue = @"$filter=patid ne \""1\"" AND patid ne \""1\""";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -121,7 +121,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$filter=patid in ('1') AND patid in ('1')";
+                queryValue = @"$filter=patid in (\""1\"") AND patid in (\""1\"")";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -130,7 +130,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$filter=patid in ( 1 ) AND patid in ( 1 )";
+                queryValue = @"$filter=patid in ( 1 ) AND patid in ( 1 )";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -139,7 +139,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$filter=patid in (1 ,2) AND patid in (1 ,2)";
+                queryValue = @"$filter=patid in (1 ,2) AND patid in (1 ,2)";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -148,7 +148,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$filter=patid in (1,  2) AND patid in (1,  2)";
+                queryValue = @"$filter=patid in (1,  2) AND patid in (1,  2)";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -157,7 +157,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$filter=patid eq 1";
+                queryValue = @"$filter=patid eq 1";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -166,7 +166,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$filter=patid in (12,  12) AND patid in (12,  12)";
+                queryValue = @"$filter=patid in (12,  12) AND patid in (12,  12)";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -175,7 +175,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$filter=patid eq 1 AND patFirstName eq 1";
+                queryValue = @"$filter=patid eq 1 AND patFirstName eq 1";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -184,7 +184,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$filter=patid eq 1 AND patFirstName eq '1'";
+                queryValue = @"$filter=patid eq 1 AND patFirstName eq \""1\""";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -193,7 +193,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$filter=patid in (12,  12) AND PatFirstName in (12,  12)";
+                queryValue = @"$filter=patid in (12,  12) AND PatFirstName in (12,  12)";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -202,7 +202,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$filter=Patfirstname eq 'this is a test'";
+                queryValue = @"$filter=Patfirstname eq \""this is a test\""";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -211,7 +211,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$filter=Patfirstname in ('this')";
+                queryValue = @"$filter=Patfirstname in (\""this\"")";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -220,15 +220,27 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$filter=Patfirstname in ('this', 'that')";
+                queryValue = @"$filter=Patfirstname in (\""this\"", \""that\"")";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
                 updatePatientWithGoodOdata(ref apiHelperObject, queryValue, patientsObject);
 
-                //These don't currently work but they should
-                //queryValue = "$filter=Patfirstname ne 'this is a' test'";
-                //queryValue = "$filter=Patfirstname eq 'this is a' test'";
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=Patfirstname ne \""this is a' test\""";
+
+                patientsObject = new();
+                patientsObject.Add("patzip", "123456");
+                updatePatientWithGoodOdata(ref apiHelperObject, queryValue, patientsObject);
+
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=Patfirstname eq \""this is a' test\""";
+
+                patientsObject = new();
+                patientsObject.Add("patzip", "123456");
+                updatePatientWithGoodOdata(ref apiHelperObject, queryValue, patientsObject);
             }
         }
     }

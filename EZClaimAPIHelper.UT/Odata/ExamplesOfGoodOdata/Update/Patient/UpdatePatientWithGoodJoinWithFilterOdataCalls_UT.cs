@@ -20,7 +20,7 @@ namespace EZClaimAPIHelper.UT
             {
                 //APIUnitTestHelperObject apiHelperObject = new(aes.Key, aes.IV, APIUnitTestHelperObject.ExampleRSAPublicKey, APIUnitTestHelperObject.s01Token, "https://localhost:44320");
                 APIUnitTestHelperObject apiHelperObject = new(aes.Key, aes.IV, APIUnitTestHelperObject.ProductionRSAPublicKey, APIUnitTestHelperObject.TestToken, "https://ezclaimapidev.azurewebsites.net");
-                queryValue = "$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid eq 1";
+                queryValue = @"$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid eq 1";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -29,7 +29,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid ne 1";
+                queryValue = @"$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid ne 1";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -38,7 +38,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid in (1)";
+                queryValue = @"$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid in (1)";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -47,7 +47,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid in (1, 2)";
+                queryValue = @"$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid in (1, 2)";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -56,7 +56,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid ne 1 and claid eq 1";
+                queryValue = @"$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid ne 1 and claid eq 1";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -65,7 +65,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid in (1, 2) and claid ne 1";
+                queryValue = @"$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid in (1, 2) and claid ne 1";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -74,7 +74,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patfirstname eq 'o'lery'";
+                queryValue = @"$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patfirstname eq \""o'lery\""";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -83,7 +83,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patfirstname ne 'o'lery'";
+                queryValue = @"$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patfirstname ne \""o'lery\""";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -92,7 +92,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patfirstname in ('o'lery')";
+                queryValue = @"$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patfirstname in (\""o'lery\"")";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -101,7 +101,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid eq 1 and claid eq 1";
+                queryValue = @"$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid eq 1 and claid eq 1";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -110,7 +110,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid in (1) and claid eq 1";
+                queryValue = @"$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid in (1) and claid eq 1";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -119,7 +119,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid in (1, 2) and claid eq 1";
+                queryValue = @"$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid in (1, 2) and claid eq 1";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -128,7 +128,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid eq null";
+                queryValue = @"$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid eq null";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -137,7 +137,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid ne null";
+                queryValue = @"$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid ne null";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -146,7 +146,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patfirstname eq 'o'lery'";
+                queryValue = @"$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patfirstname eq \""o'lery\""";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -155,7 +155,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patfirstname in ('o'lery')";
+                queryValue = @"$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patfirstname in (\""o'lery\"")";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");
@@ -164,7 +164,7 @@ namespace EZClaimAPIHelper.UT
                 Thread.Sleep(3000);
 
 
-                queryValue = "$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid ne 1 and claid eq 1";
+                queryValue = @"$join=LEFT Claim ClaPatFID EQ Patient PatID;$filter=Patid ne 1 and claid eq 1";
 
                 patientsObject = new();
                 patientsObject.Add("patzip", "123456");

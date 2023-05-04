@@ -193,7 +193,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Claim_Insureds/query";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=ClaInsLastName eq 'APIClaim_InsuredLastName'""
+                    ""Query"": ""$filter=ClaInsLastName eq \""APIClaim_InsuredLastName\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Delete);
@@ -241,7 +241,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Claim_Insureds/GetList";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=ClaInsLastName eq 'APIClaim_InsuredLastName'""
+                    ""Query"": ""$filter=ClaInsLastName eq \""APIClaim_InsuredLastName\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Post);
@@ -261,7 +261,7 @@ namespace EZClaimAPIHelper.UT
 
                 string query = apiHelperObject.ResponseDynamicResult.Query;
 
-                Assert.Equal("$filter=ClaInsLastName eq 'APIClaim_InsuredLastName'", query);
+                Assert.Equal(@"$filter=ClaInsLastName eq ""APIClaim_InsuredLastName""", query);
             }
             else
             {
@@ -355,7 +355,7 @@ namespace EZClaimAPIHelper.UT
     ""ClaInsZip"": ""55555""
   }},
   ""queryString"": {{
-    ""query"": ""$filter=ClaInsLastName eq 'APIClaim_InsuredLastName'""
+    ""query"": ""$filter=ClaInsLastName eq \""APIClaim_InsuredLastName\""""
   }}
 }}";
 

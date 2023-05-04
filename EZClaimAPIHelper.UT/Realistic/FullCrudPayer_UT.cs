@@ -44,6 +44,22 @@ namespace EZClaimAPIHelper.UT
 
                 Thread.Sleep(3000);
 
+                create1PayerWithChildren(ref apiHelperObject);
+
+                Thread.Sleep(3000);
+
+                create2PayersWithChildren(ref apiHelperObject);
+
+                Thread.Sleep(3000);
+
+                selectPayerSimpleList(ref apiHelperObject);
+
+                Thread.Sleep(3000);
+
+                selectPayerSimpleListPage(ref apiHelperObject, 1);
+
+                Thread.Sleep(3000);
+
                 selectPayersWithLastNameAPIPayer(ref apiHelperObject, true);
 
                 int id1 = (int)apiHelperObject.ResponseData[0].PayID;
@@ -107,6 +123,30 @@ namespace EZClaimAPIHelper.UT
         }
 
         /// <summary>
+        /// Example creating 1 Payer record
+        /// </summary>
+        /// <param name="apiHelperObject"></param>
+        private void create1PayerWithChildren(ref APIUnitTestHelperObject apiHelperObject)
+        {
+            apiHelperObject.Endpoint = "/api/v2/Payers";
+            apiHelperObject.APIBody = @"{
+                    ""PayName"": ""APIPayer"",
+                    ""paymentsObjectWithoutID"": [
+                        {
+                            ""PmtDate"": ""2023-03-07"",
+                            ""PmtNameOnCard"":""APIPayment""
+                        }
+                    ]
+                }";
+
+            apiHelperObject.RunAPICall(HttpMethod.Post);
+
+            Assert.Equal(200, apiHelperObject.ResponseStatus);
+
+            Assert.Equal(2, apiHelperObject.ResponseData.Count);
+        }
+
+        /// <summary>
         /// Example creating 6 Payer records
         /// </summary>
         /// <param name="apiHelperObject"></param>
@@ -143,6 +183,42 @@ namespace EZClaimAPIHelper.UT
         }
 
         /// <summary>
+        /// Example creating 6 Payer records
+        /// </summary>
+        /// <param name="apiHelperObject"></param>
+        private void create2PayersWithChildren(ref APIUnitTestHelperObject apiHelperObject)
+        {
+            apiHelperObject.Endpoint = "/api/v2/Payers/list";
+
+            apiHelperObject.APIBody = @"[
+                    {
+                    ""PayName"": ""APIPayer"",
+                    ""paymentsObjectWithoutID"": [
+                        {
+                            ""PmtDate"": ""2023-03-07"",
+                            ""PmtNameOnCard"":""APIPayment1""
+                        }
+                    ]
+                    },
+                    {
+                    ""PayName"": ""APIPayer"",
+                    ""paymentsObjectWithoutID"": [
+                        {
+                            ""PmtDate"": ""2023-03-07"",
+                            ""PmtNameOnCard"":""APIPayment2""
+                        }
+                    ]
+                    }
+                ]";
+
+            apiHelperObject.RunAPICall(HttpMethod.Post);
+
+            Assert.Equal(200, apiHelperObject.ResponseStatus);
+
+            Assert.Equal(4, apiHelperObject.ResponseData.Count);
+        }
+
+        /// <summary>
         /// Example deleting 3 Payer records based on id's
         /// </summary>
         /// <param name="apiHelperObject"></param>
@@ -172,7 +248,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Payers/query";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=PayName eq 'APIPayer'""
+                    ""Query"": ""$filter=PayName eq \""APIPayer\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Delete);
@@ -220,7 +296,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Payers/GetList";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=PayName eq 'APIPayer'""
+                    ""Query"": ""$filter=PayName eq \""APIPayer\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Post);
@@ -240,7 +316,7 @@ namespace EZClaimAPIHelper.UT
 
                 string query = apiHelperObject.ResponseDynamicResult.Query;
 
-                Assert.Equal("$filter=PayName eq 'APIPayer'", query);
+                Assert.Equal(@"$filter=PayName eq ""APIPayer""", query);
             }
             else
             {
@@ -263,6 +339,39 @@ namespace EZClaimAPIHelper.UT
             Assert.Equal(200, apiHelperObject.ResponseStatus);
 
             Assert.True(apiHelperObject.ResponseData.Count >= 2);
+        }
+
+        /// <summary>
+        /// Select simple full list of Payers
+        /// </summary>
+        /// <param name="apiHelperObject"></param>
+        private void selectPayerSimpleList(ref APIUnitTestHelperObject apiHelperObject)
+        {
+            apiHelperObject.Endpoint = "/api/v2/Payers/GetSimpleList";
+
+            apiHelperObject.APIBody = @"";
+
+            apiHelperObject.RunAPICall(HttpMethod.Post);
+
+            Assert.Equal(200, apiHelperObject.ResponseStatus);
+            Assert.True(apiHelperObject.ResponseData.Count > 5);
+        }
+
+        /// <summary>
+        /// Select simple full list of Payers based on page number
+        /// </summary>
+        /// <param name="apiHelperObject"></param>
+        /// <param name="page"></param>
+        private void selectPayerSimpleListPage(ref APIUnitTestHelperObject apiHelperObject, int page)
+        {
+            apiHelperObject.Endpoint = $"/api/v2/Payers/GetSimpleList/page/{page}";
+
+            apiHelperObject.APIBody = @"";
+
+            apiHelperObject.RunAPICall(HttpMethod.Post);
+
+            Assert.Equal(200, apiHelperObject.ResponseStatus);
+            Assert.True(apiHelperObject.ResponseData.Count > 5);
         }
 
         /// <summary>
@@ -334,7 +443,7 @@ namespace EZClaimAPIHelper.UT
     ""PayZip"": ""55555""
   }},
   ""queryString"": {{
-    ""query"": ""$filter=PayName eq 'APIPayer'""
+    ""query"": ""$filter=PayName eq \""APIPayer\""""
   }}
 }}";
 

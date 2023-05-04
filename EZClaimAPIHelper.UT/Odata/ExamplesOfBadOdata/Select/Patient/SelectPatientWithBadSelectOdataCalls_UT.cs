@@ -123,15 +123,41 @@ namespace EZClaimAPIHelper.UT
                 queryValue = "$select=junk";
 
                 selectPatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, "Invalid select statement in request : junk");
+
                 Thread.Sleep(3000);
 
-                //This currently works, but it should not.
-                //selectPatientWithBadOdata_printOutcome(ref apiHelperObject, "$select=PatID AS 'ID',");
-                //Thread.Sleep(3000);
+                queryValue = "$select=PatID AS 'ID',";
+                selectPatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, "Invalid statement in request : $select=PatID AS 'ID',");
 
-                //This currently works, but it should not.
-                //selectPatientWithBadOdata_printOutcome(ref apiHelperObject, "$select=PatID,");
-                //Thread.Sleep(3000);
+                Thread.Sleep(3000);
+
+                queryValue = "$select=PatID,";
+                selectPatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, "Invalid statement in request : $select=PatID,");
+
+                Thread.Sleep(3000);
+
+                queryValue = "$ids=1,";
+                selectPatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, "Invalid statement in request : $ids=1,");
+
+                Thread.Sleep(3000);
+
+                queryValue = "$ids=,1";
+                selectPatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, "Invalid statement in request : $ids=,1");
+
+                Thread.Sleep(3000);
+
+                queryValue = "$orderby=patid desc,";
+                selectPatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, "Invalid statement in request : $orderby=patid desc,");
+
+                Thread.Sleep(3000);
+
+                queryValue = "$orderby=,patid desc,";
+                selectPatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, "Invalid statement in request : $orderby=,patid desc,");
+
+                Thread.Sleep(3000);
+
+                queryValue = "$orderby=,patid desc";
+                selectPatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, "Invalid statement in request : $orderby=,patid desc");
             }
         }
     }

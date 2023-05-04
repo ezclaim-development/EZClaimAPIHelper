@@ -249,7 +249,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/PatientLinkableInsureds/query";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=LastName eq 'APIPatientLinkableInsuredsLastName'""
+                    ""Query"": ""$filter=LastName eq \""APIPatientLinkableInsuredsLastName\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Delete);
@@ -269,7 +269,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/PatientLinkableInsureds/PatientPartOnly/query";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=LastName eq 'APIPatientLinkableInsuredsLastName'""
+                    ""Query"": ""$filter=LastName eq \""APIPatientLinkableInsuredsLastName\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Delete);
@@ -289,7 +289,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/PatientLinkableInsureds/GetList";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=LastName eq 'APIPatientLinkableInsuredsLastName'""
+                    ""Query"": ""$filter=LastName eq \""APIPatientLinkableInsuredsLastName\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Post);
@@ -309,7 +309,7 @@ namespace EZClaimAPIHelper.UT
 
                 string query = apiHelperObject.ResponseDynamicResult.Query;
 
-                Assert.Equal("$filter=LastName eq 'APIPatientLinkableInsuredsLastName'", query);
+                Assert.Equal(@"$filter=LastName eq ""APIPatientLinkableInsuredsLastName""", query);
             }
             else
             {
@@ -366,7 +366,7 @@ namespace EZClaimAPIHelper.UT
     ""Zip"": ""55555""
   }},
   ""queryString"": {{
-    ""query"": ""$filter=LastName eq 'APIPatientLinkableInsuredsLastName'""
+    ""query"": ""$filter=LastName eq \""APIPatientLinkableInsuredsLastName\""""
   }}
 }}";
 

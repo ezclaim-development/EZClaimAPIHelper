@@ -12,92 +12,94 @@ using Xunit.Abstractions;
 
 namespace EZClaimAPIHelper.UT
 {
-    public class FullCrudInsured_UT
+    public class FullCrudAuthorized_Visits_UT
     {
         private readonly ITestOutputHelper output;
 
-        public FullCrudInsured_UT(ITestOutputHelper output)
+        public FullCrudAuthorized_Visits_UT(ITestOutputHelper output)
         {
             this.output = output;
         }
 
         /// <summary>
-        /// Runs a full gambit of tests on the Insured endpoints. It pauses for 3 seconds between endpoint calls to make sure it doesn't get rate limited.
+        /// Runs a full gambit of tests on the Authorized_Visits endpoints. It pauses for 3 seconds between endpoint calls to make sure it doesn't get rate limited.
         /// </summary>
         [Fact(Skip = "This is used for example purposes only. It can be run, but there's no point.")]
-        public void LiveCall_FullCrudInsured()
+        public void LiveCall_FullCrudAuthorized_Visits()
         {
             using (Aes aes = Aes.Create())
             {
                 //APIUnitTestHelperObject apiHelperObject = new(aes.Key, aes.IV, APIUnitTestHelperObject.ExampleRSAPublicKey, APIUnitTestHelperObject.s01Token, "https://localhost:44320");
                 APIUnitTestHelperObject apiHelperObject = new(aes.Key, aes.IV, APIUnitTestHelperObject.ProductionRSAPublicKey, APIUnitTestHelperObject.TestToken, "https://ezclaimapidev.azurewebsites.net");
 
-                selectTop1Insured(ref apiHelperObject);
+                selectTop1Authorized_Visits(ref apiHelperObject);
 
                 Thread.Sleep(3000);
 
-                create6TestInsureds(ref apiHelperObject);
+                create6TestAuthorized_Visits(ref apiHelperObject);
 
                 Thread.Sleep(3000);
 
-                create1Insured(ref apiHelperObject);
+                create1Authorized_Visits(ref apiHelperObject);
 
                 Thread.Sleep(3000);
 
-                selectInsuredsWithLastNameAPIInsuredLastName(ref apiHelperObject, true);
+                selectAuthorized_VisitsWithLastNameAPIAuthorized_VisitsLastName(ref apiHelperObject, true);
 
-                Guid id1 = (Guid)apiHelperObject.ResponseData[0].InsGUID;
-                Guid id2 = (Guid)apiHelperObject.ResponseData[1].InsGUID;
-                Guid id3 = (Guid)apiHelperObject.ResponseData[2].InsGUID;
-
-                Thread.Sleep(3000);
-
-                selectInsuredsFromSetNextPageURL(ref apiHelperObject);
+                int id1 = (int)apiHelperObject.ResponseData[0].AuthVisID;
+                int id2 = (int)apiHelperObject.ResponseData[1].AuthVisID;
+                int id3 = (int)apiHelperObject.ResponseData[2].AuthVisID;
 
                 Thread.Sleep(3000);
 
-                seletInsuredFromID(ref apiHelperObject, id1, true);
+                selectAuthorized_VisitsFromSetNextPageURL(ref apiHelperObject);
 
                 Thread.Sleep(3000);
 
-                updateInsuredListFromIDs(ref apiHelperObject, id1, id2, id3);
+                seletAuthorized_VisitsFromID(ref apiHelperObject, id1, true);
 
                 Thread.Sleep(3000);
 
-                updateInsuredZipBasedOnLastName(ref apiHelperObject);
+                updateAuthorized_VisitsListFromIDs(ref apiHelperObject, id1, id2, id3);
 
                 Thread.Sleep(3000);
 
-                updateInsuredFromID(ref apiHelperObject, id1);
+                updateAuthorized_VisitsZipBasedOnLastName(ref apiHelperObject);
 
                 Thread.Sleep(3000);
 
-                deleteInsuredFromIDs(ref apiHelperObject, id1, id2, id3);
+                updateAuthorized_VisitsFromID(ref apiHelperObject, id1);
 
                 Thread.Sleep(3000);
 
-                seletInsuredFromID(ref apiHelperObject, id1, false);
+                deleteAuthorized_VisitsFromIDs(ref apiHelperObject, id1, id2, id3);
 
                 Thread.Sleep(3000);
 
-                deleteInsuredFromQuery(ref apiHelperObject);
+                seletAuthorized_VisitsFromID(ref apiHelperObject, id1, false);
 
                 Thread.Sleep(3000);
 
-                selectInsuredsWithLastNameAPIInsuredLastName(ref apiHelperObject, false);
+                deleteAuthorized_VisitsFromQuery(ref apiHelperObject);
+
+                Thread.Sleep(3000);
+
+                selectAuthorized_VisitsWithLastNameAPIAuthorized_VisitsLastName(ref apiHelperObject, false);
             }
         }
 
         /// <summary>
-        /// Example creating 1 Insured record
+        /// Example creating 1 Authorized_Visits record
         /// </summary>
         /// <param name="apiHelperObject"></param>
-        private void create1Insured(ref APIUnitTestHelperObject apiHelperObject)
+        private void create1Authorized_Visits(ref APIUnitTestHelperObject apiHelperObject)
         {
-            apiHelperObject.Endpoint = "/api/v2/Insureds";
+            apiHelperObject.Endpoint = "/api/v2/Authorized_Visits";
             apiHelperObject.APIBody = @"{
-                    ""InsFirstName"": ""APIInsuredFirstName7"",
-                    ""InsLastName"":""APIInsuredLastName""
+                    ""AuthVisPatFID"": ""1"",
+                    ""AuthVisNumber"":""APIAuthorized_Visits"",
+                    ""AuthVisNotes"":""note7"",
+                    ""AuthVisStart"":""2023-04-24""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Post);
@@ -108,37 +110,49 @@ namespace EZClaimAPIHelper.UT
         }
 
         /// <summary>
-        /// Example creating 6 Insured records
+        /// Example creating 6 Authorized_Visits records
         /// </summary>
         /// <param name="apiHelperObject"></param>
-        private void create6TestInsureds(ref APIUnitTestHelperObject apiHelperObject)
+        private void create6TestAuthorized_Visits(ref APIUnitTestHelperObject apiHelperObject)
         {
-            apiHelperObject.Endpoint = "/api/v2/Insureds/list";
+            apiHelperObject.Endpoint = "/api/v2/Authorized_Visits/list";
 
             apiHelperObject.APIBody = @"[
                     {
-                    ""InsFirstName"": ""APIInsuredFirstName1"",
-                    ""InsLastName"":""APIInsuredLastName""
+                    ""AuthVisPatFID"": ""1"",
+                    ""AuthVisNumber"":""APIAuthorized_Visits"",
+                    ""AuthVisNotes"":""note1"",
+                    ""AuthVisStart"":""2023-04-24""
                     },
                     {
-                    ""InsFirstName"": ""APIInsuredFirstName2"",
-                    ""InsLastName"":""APIInsuredLastName""
+                    ""AuthVisPatFID"": ""1"",
+                    ""AuthVisNumber"":""APIAuthorized_Visits"",
+                    ""AuthVisNotes"":""note2"",
+                    ""AuthVisStart"":""2023-04-24""
                     },
                     {
-                    ""InsFirstName"": ""APIInsuredFirstName3"",
-                    ""InsLastName"":""APIInsuredLastName""
+                    ""AuthVisPatFID"": ""1"",
+                    ""AuthVisNumber"":""APIAuthorized_Visits"",
+                    ""AuthVisNotes"":""note3"",
+                    ""AuthVisStart"":""2023-04-24""
                     },
                     {
-                    ""InsFirstName"": ""APIInsuredFirstName4"",
-                    ""InsLastName"":""APIInsuredLastName""
+                    ""AuthVisPatFID"": ""1"",
+                    ""AuthVisNumber"":""APIAuthorized_Visits"",
+                    ""AuthVisNotes"":""note4"",
+                    ""AuthVisStart"":""2023-04-24""
                     },
                     {
-                    ""InsFirstName"": ""APIInsuredFirstName5"",
-                    ""InsLastName"":""APIInsuredLastName""
+                    ""AuthVisPatFID"": ""1"",
+                    ""AuthVisNumber"":""APIAuthorized_Visits"",
+                    ""AuthVisNotes"":""note5"",
+                    ""AuthVisStart"":""2023-04-24""
                     },
                     {
-                    ""InsFirstName"": ""APIInsuredFirstName6"",
-                    ""InsLastName"":""APIInsuredLastName""
+                    ""AuthVisPatFID"": ""1"",
+                    ""AuthVisNumber"":""APIAuthorized_Visits"",
+                    ""AuthVisNotes"":""note6"",
+                    ""AuthVisStart"":""2023-04-24""
                     }
                 ]";
 
@@ -150,15 +164,15 @@ namespace EZClaimAPIHelper.UT
         }
 
         /// <summary>
-        /// Example deleting 3 Insured records based on id's
+        /// Example deleting 3 Authorized_Visits records based on id's
         /// </summary>
         /// <param name="apiHelperObject"></param>
         /// <param name="id1"></param>
         /// <param name="id2"></param>
         /// <param name="id3"></param>
-        private void deleteInsuredFromIDs(ref APIUnitTestHelperObject apiHelperObject, Guid id1, Guid id2, Guid id3)
+        private void deleteAuthorized_VisitsFromIDs(ref APIUnitTestHelperObject apiHelperObject, int id1, int id2, int id3)
         {
-            apiHelperObject.Endpoint = "/api/v2/Insureds/ids";
+            apiHelperObject.Endpoint = "/api/v2/Authorized_Visits/ids";
 
             apiHelperObject.APIBody = @$"[""{id1}"", ""{id2}"", ""{id3}""]";
 
@@ -170,16 +184,16 @@ namespace EZClaimAPIHelper.UT
         }
 
         /// <summary>
-        /// Example of deleting Insured records based on a query
+        /// Example of deleting Authorized_Visits records based on a query
         /// </summary>
         /// <param name="apiHelperObject"></param>
-        private void deleteInsuredFromQuery(ref APIUnitTestHelperObject apiHelperObject)
+        private void deleteAuthorized_VisitsFromQuery(ref APIUnitTestHelperObject apiHelperObject)
         {
 
-            apiHelperObject.Endpoint = "/api/v2/Insureds/query";
+            apiHelperObject.Endpoint = "/api/v2/Authorized_Visits/query";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=InsLastName eq \""APIInsuredLastName\""""
+                    ""Query"": ""$filter=AuthVisNumber eq \""APIAuthorized_Visits\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Delete);
@@ -190,14 +204,14 @@ namespace EZClaimAPIHelper.UT
         }
 
         /// <summary>
-        /// Example of selecting a Insured based on an id
+        /// Example of selecting a Authorized_Visits based on an id
         /// </summary>
         /// <param name="apiHelperObject"></param>
         /// <param name="id1"></param>
         /// <param name="isSuccessful"></param>
-        private void seletInsuredFromID(ref APIUnitTestHelperObject apiHelperObject, Guid id1, bool isSuccessful)
+        private void seletAuthorized_VisitsFromID(ref APIUnitTestHelperObject apiHelperObject, int id1, bool isSuccessful)
         {
-            apiHelperObject.Endpoint = $"/api/v2/Insureds/{id1}";
+            apiHelperObject.Endpoint = $"/api/v2/Authorized_Visits/{id1}";
 
             apiHelperObject.APIBody = @"{}";
 
@@ -218,16 +232,16 @@ namespace EZClaimAPIHelper.UT
         }
 
         /// <summary>
-        /// Select Insureds based on query
+        /// Select Authorized_Visits based on query
         /// </summary>
         /// <param name="apiHelperObject"></param>
         /// <param name="isSuccessful"></param>
-        private void selectInsuredsWithLastNameAPIInsuredLastName(ref APIUnitTestHelperObject apiHelperObject, bool isSuccessful)
+        private void selectAuthorized_VisitsWithLastNameAPIAuthorized_VisitsLastName(ref APIUnitTestHelperObject apiHelperObject, bool isSuccessful)
         {
-            apiHelperObject.Endpoint = "/api/v2/Insureds/GetList";
+            apiHelperObject.Endpoint = "/api/v2/Authorized_Visits/GetList";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=InsLastName eq \""APIInsuredLastName\""""
+                    ""Query"": ""$filter=AuthVisNumber eq \""APIAuthorized_Visits\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Post);
@@ -243,11 +257,11 @@ namespace EZClaimAPIHelper.UT
 
                 string nextPageURL = apiHelperObject.ResponseDynamicResult.NextPageURL;
 
-                Assert.Equal($"{apiHelperObject.BaseAddress}/api/v2/Insureds/page/2", nextPageURL);
+                Assert.Equal($"{apiHelperObject.BaseAddress}/api/v2/Authorized_Visits/page/2", nextPageURL);
 
                 string query = apiHelperObject.ResponseDynamicResult.Query;
 
-                Assert.Equal(@"$filter=InsLastName eq ""APIInsuredLastName""", query);
+                Assert.Equal(@"$filter=AuthVisNumber eq ""APIAuthorized_Visits""", query);
             }
             else
             {
@@ -258,10 +272,10 @@ namespace EZClaimAPIHelper.UT
         }
 
         /// <summary>
-        /// Example of selecting a Insured based on the returned NextPageURL
+        /// Example of selecting a Authorized_Visits based on the returned NextPageURL
         /// </summary>
         /// <param name="apiHelperObject"></param>
-        private void selectInsuredsFromSetNextPageURL(ref APIUnitTestHelperObject apiHelperObject)
+        private void selectAuthorized_VisitsFromSetNextPageURL(ref APIUnitTestHelperObject apiHelperObject)
         {
             apiHelperObject.Endpoint = apiHelperObject.ResponseDynamicResult.NextPageURL;
 
@@ -273,12 +287,12 @@ namespace EZClaimAPIHelper.UT
         }
 
         /// <summary>
-        /// Example of selecting the first Insured record.
+        /// Example of selecting the first Authorized_Visits record.
         /// </summary>
         /// <param name="apiHelperObject"></param>
-        private void selectTop1Insured(ref APIUnitTestHelperObject apiHelperObject)
+        private void selectTop1Authorized_Visits(ref APIUnitTestHelperObject apiHelperObject)
         {
-            apiHelperObject.Endpoint = "/api/v2/Insureds/GetList";
+            apiHelperObject.Endpoint = "/api/v2/Authorized_Visits/GetList";
 
             apiHelperObject.APIBody = @"{
                   ""Query"": ""$top=1""
@@ -292,28 +306,28 @@ namespace EZClaimAPIHelper.UT
         }
 
         /// <summary>
-        /// Example of updating 3 Insured records based on id's
+        /// Example of updating 3 Authorized_Visits records based on id's
         /// </summary>
         /// <param name="apiHelperObject"></param>
         /// <param name="id1"></param>
         /// <param name="id2"></param>
         /// <param name="id3"></param>
-        private void updateInsuredListFromIDs(ref APIUnitTestHelperObject apiHelperObject, Guid id1, Guid id2, Guid id3)
+        private void updateAuthorized_VisitsListFromIDs(ref APIUnitTestHelperObject apiHelperObject, int id1, int id2, int id3)
         {
-            apiHelperObject.Endpoint = "/api/v2/Insureds/list";
+            apiHelperObject.Endpoint = "/api/v2/Authorized_Visits/list";
 
             apiHelperObject.APIBody = @$"[
                         {{
-                            ""InsZip"": ""55551"",
-                            ""InsGUID"": ""{id1}""
+                            ""AuthVisNotes"": ""E1"",
+                            ""AuthVisID"": ""{id1}""
                         }},
                         {{
-                            ""InsZip"": ""55552"",
-                            ""InsGUID"": ""{id2}""
+                            ""AuthVisNotes"": ""E2"",
+                            ""AuthVisID"": ""{id2}""
                         }},
                         {{
-                            ""InsZip"": ""55553"",
-                            ""InsGUID"": ""{id3}""
+                            ""AuthVisNotes"": ""E3"",
+                            ""AuthVisID"": ""{id3}""
                         }}
                     ]";
 
@@ -323,25 +337,25 @@ namespace EZClaimAPIHelper.UT
 
             Assert.Equal(3, apiHelperObject.ResponseData.Count);
 
-            Assert.Equal(55551, (int)apiHelperObject.ResponseData[0].InsZip);
-            Assert.Equal(55552, (int)apiHelperObject.ResponseData[1].InsZip);
-            Assert.Equal(55553, (int)apiHelperObject.ResponseData[2].InsZip);
+            Assert.Equal("E1", (string)apiHelperObject.ResponseData[0].AuthVisNotes);
+            Assert.Equal("E2", (string)apiHelperObject.ResponseData[1].AuthVisNotes);
+            Assert.Equal("E3", (string)apiHelperObject.ResponseData[2].AuthVisNotes);
         }
 
         /// <summary>
-        /// Example of updating Insureds based on a query
+        /// Example of updating Authorized_Visits based on a query
         /// </summary>
         /// <param name="apiHelperObject"></param>
-        private void updateInsuredZipBasedOnLastName(ref APIUnitTestHelperObject apiHelperObject)
+        private void updateAuthorized_VisitsZipBasedOnLastName(ref APIUnitTestHelperObject apiHelperObject)
         {
-            apiHelperObject.Endpoint = "/api/v2/Insureds";
+            apiHelperObject.Endpoint = "/api/v2/Authorized_Visits";
 
             apiHelperObject.APIBody = @$"{{
-  ""InsuredsObject"": {{
-    ""InsZip"": ""55555""
+  ""Authorized_VisitsObject"": {{
+    ""AuthVisNotes"": ""EE""
   }},
   ""queryString"": {{
-    ""query"": ""$filter=InsLastName eq \""APIInsuredLastName\""""
+    ""query"": ""$filter=AuthVisNumber eq \""APIAuthorized_Visits\""""
   }}
 }}";
 
@@ -353,23 +367,23 @@ namespace EZClaimAPIHelper.UT
 
             for (int i = 0; i < 7; i++)
             {
-                Assert.Equal(55555, (int)apiHelperObject.ResponseData[i].InsZip);
+                Assert.Equal("EE", (string)apiHelperObject.ResponseData[i].AuthVisNotes);
             }
         }
 
         /// <summary>
-        /// Example of updating 1 Insured record based on an id
+        /// Example of updating 1 Authorized_Visits record based on an id
         /// </summary>
         /// <param name="apiHelperObject"></param>
         /// <param name="id1"></param>
-        private void updateInsuredFromID(ref APIUnitTestHelperObject apiHelperObject, Guid id1)
+        private void updateAuthorized_VisitsFromID(ref APIUnitTestHelperObject apiHelperObject, int id1)
         {
-            apiHelperObject.Endpoint = "/api/v2/Insureds";
+            apiHelperObject.Endpoint = "/api/v2/Authorized_Visits";
 
             apiHelperObject.APIBody = @$"{{
-                  ""InsuredsObject"": {{
-                    ""InsZip"": ""55551"",
-                    ""InsGUID"": ""{id1}""
+                  ""Authorized_VisitsObject"": {{
+                    ""AuthVisNotes"": ""EI"",
+                    ""AuthVisID"": ""{id1}""
                   }}
                 }}";
 
@@ -379,7 +393,7 @@ namespace EZClaimAPIHelper.UT
 
             Assert.Equal(1, apiHelperObject.ResponseData.Count);
 
-            Assert.Equal(55551, (int)apiHelperObject.ResponseData[0].InsZip);
+            Assert.Equal("EI", (string)apiHelperObject.ResponseData[0].AuthVisNotes);
         }
     }
 }

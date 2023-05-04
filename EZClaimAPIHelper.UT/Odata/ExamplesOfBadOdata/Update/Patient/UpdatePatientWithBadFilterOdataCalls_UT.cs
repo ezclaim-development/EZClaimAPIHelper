@@ -21,458 +21,482 @@ namespace EZClaimAPIHelper.UT
                 //APIUnitTestHelperObject apiHelperObject = new(aes.Key, aes.IV, APIUnitTestHelperObject.ExampleRSAPublicKey, APIUnitTestHelperObject.s01Token, "https://localhost:44320");
                 APIUnitTestHelperObject apiHelperObject = new(aes.Key, aes.IV, APIUnitTestHelperObject.ProductionRSAPublicKey, APIUnitTestHelperObject.TestToken, "https://ezclaimapidev.azurewebsites.net");
 
-                queryValue = "";
+                queryValue = @"";
 
                 patientsObject = new();
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "No Object To Update - No object passed in to be updated.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"No Object To Update - No object passed in to be updated.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "filter=1";
+                queryValue = @"filter=1";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname1", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "No Object To Update - No object passed in to be updated.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"No Object To Update - No object passed in to be updated.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "filter=1";
+                queryValue = @"filter=1";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameter : (filter=1). Query can contain 'filter' or 'join')");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameter : (filter=1). Query can contain 'filter' or 'join')");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filterS=PatLastName ne 'APIPatientLastName'";
+                queryValue = @"$filterS=PatLastName ne \""APIPatientLastName\""";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameter : ($filterS=PatLastName ne 'APIPatientLastName'). Query can contain 'filter' or 'join')");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameter : ($filterS=PatLastName ne ""APIPatientLastName""). Query can contain 'filter' or 'join')");
 
                 Thread.Sleep(3000);
 
-                queryValue = "filter=PatLastName ne 'APIPatientLastName'";
+                queryValue = @"filter=PatLastName ne \""APIPatientLastName\""";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameter : (filter=PatLastName ne 'APIPatientLastName'). Query can contain 'filter' or 'join')");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameter : (filter=PatLastName ne ""APIPatientLastName""). Query can contain 'filter' or 'join')");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=PatLastName 'APIPatientLastName'";
+                queryValue = @"$filter=PatLastName \""APIPatientLastName\""";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata doesn't match expected format.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter:PatLastName eq 'APIPatientLastName'";
+                queryValue = @"$filter:PatLastName eq \""APIPatientLastName\""";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameter : ($filter:PatLastName eq 'APIPatientLastName'). Query can contain 'filter' or 'join')");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameter : ($filter:PatLastName eq ""APIPatientLastName""). Query can contain 'filter' or 'join')");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=PatLastName eqs 'APIPatientLastName'";
+                queryValue = @"$filter=PatLastName eqs \""APIPatientLastName\""";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters : eqs");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata doesn't match expected format.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=Patasdf eq 'APIPatientLastName'";
+                queryValue = @"$filter=Patasdf eq \""APIPatientLastName\""";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters : Patasdf");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters : Patasdf");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=PatLastName eq APIPatientLastName";
+                queryValue = @"$filter=PatLastName eq APIPatientLastName";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata doesn't match expected format.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=PatLastName in APIPatientLastName";
+                queryValue = @"$filter=PatLastName in APIPatientLastName";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata doesn't match expected format.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=PatLastName in 'APIPatientLastName'";
+                queryValue = @"$filter=PatLastName in \""APIPatientLastName\""";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters : APIPatientLastName");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata doesn't match expected format.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=PatLastName in ('APIPatientLastName',)";
+                queryValue = @"$filter=PatLastName in (\""APIPatientLastName\"",)";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters : APIPatientLastName,");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid statement in request : $filter=PatLastName in (""APIPatientLastName"",)");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=PatLastName eq 'APIPatientLastName' junk PatLastName eq 'APIPatientLastName'";
+                queryValue = @"$filter=PatLastName eq \""APIPatientLastName\"" junk PatLastName eq \""APIPatientLastName\""";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata (PatLastName eq ""APIPatientLastName"" junk PatLastName eq ""APIPatientLastName"") contains unescaped double quote.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=PatLastName eq 'APIPatientLastName' s";
+                queryValue = @"$filter=PatLastName eq \""APIPatientLastName\"" s";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata doesn't match expected format.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=PatLastName in (APIPatientLastName)";
+                queryValue = @"$filter=PatLastName in (APIPatientLastName)";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - Quoted items in odata in list are not in correctly listed form (PatLastName in (APIPatientLastName))");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=PatLastName in ('APIPatientLastName','test)";
+                queryValue = @"$filter=PatLastName in (\""APIPatientLastName\"",\""test)";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - quotes are not escaped properly.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=PatLastName eq 'APIPatientLastName' junk";
+                queryValue = @"$filter=PatLastName eq \""APIPatientLastName\"" junk";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata doesn't match expected format.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=PatLastName eq 'APIPatientLastName' And";
+                queryValue = @"$filter=PatLastName eq \""APIPatientLastName\"" And";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters in '$filter', please provide valid conditions without extra spaces.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters in '$filter', please provide valid conditions without extra spaces.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=PatLastName eq 'APIPatientLastName' And PatFirstName";
+                queryValue = @"$filter=PatLastName eq \""APIPatientLastName\"" And PatFirstName";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=PatLastName eq 'APIPatientLastName' or and";
+                queryValue = @"$filter=PatLastName eq \""APIPatientLastName\"" or and";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=junk";
+                queryValue = @"$filter=junk";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata doesn't match expected format.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=Patfirstname ne'this'";
+                queryValue = @"$filter=Patfirstname ne\""this\""";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata doesn't match expected format.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=Patfirstname ne('this')";
+                queryValue = @"$filter=Patfirstname ne(\""this\"")";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata doesn't match expected format.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=Patfirstname in('this')";
+                queryValue = @"$filter=Patfirstname in(\""this\"")";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata doesn't match expected format.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=Patfirstname in ('this', 'that',)";
+                queryValue = @"$filter=Patfirstname in (\""this\"", \""that\"",)";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters : this, that,");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid statement in request : $filter=Patfirstname in (""this"", ""that"",)");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=Patfirstname in (,'this', 'that')";
+                queryValue = @"$filter=Patfirstname in (,\""this\"", \""that\"")";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid statement in request : $filter=Patfirstname in (,""this"", ""that"")");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid in  (1, 2)";
+                queryValue = @"$filter=patid in  (1, 2)";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata doesn't match expected format.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid  in (1, 2)";
+                queryValue = @"$filter=patid  in (1, 2)";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata doesn't match expected format.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter =patid in (1, 2)";
+                queryValue = @"$filter =patid in (1, 2)";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameter : ($filter =patid in (1, 2)). Query can contain 'filter' or 'join')");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameter : ($filter =patid in (1, 2)). Query can contain 'filter' or 'join')");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$ filter=patid in (1, 2)";
+                queryValue = @"$ filter=patid in (1, 2)";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameter : ($ filter=patid in (1, 2)). Query can contain 'filter' or 'join')");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameter : ($ filter=patid in (1, 2)). Query can contain 'filter' or 'join')");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid eq a";
+                queryValue = @"$filter=patid eq a";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata doesn't match expected format.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid eq ('a')";
+                queryValue = @"$filter=patid eq (\""a\"")";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata doesn't match expected format.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid eq (a)";
+                queryValue = @"$filter=patid eq (a)";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata doesn't match expected format.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid eq (1)";
+                queryValue = @"$filter=patid eq (1)";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata doesn't match expected format.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid eq 2,3";
+                queryValue = @"$filter=patid eq 2,3";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata doesn't match expected format.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid in (a,b)";
+                queryValue = @"$filter=patid in (a,b)";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - Quoted items in odata in list are not in correctly listed form (patid in (a,b))");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid in ('1','b)";
+                queryValue = @"$filter=patid in (\""1\"",\""b)";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - quotes are not escaped properly.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid eq 'a' AND patid eq 'a'";
+                queryValue = @"$filter=patid eq \""a\"" AND patid eq \""a\""";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Failed to convert parameter value from a String to a Int32.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Failed to convert parameter value from a String to a Int32.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid in ('1', 'b') AND patid in ('1', 'b')";
+                queryValue = @"$filter=patid in (\""1\"", \""b\"") AND patid in (\""1\"", \""b\"")";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Conversion failed when converting the nvarchar value 'b' to data type int.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Conversion failed when converting the nvarchar value 'b' to data type int.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid in (1, 'b') AND patid in (1, 'b')";
+                queryValue = @"$filter=patid in (1, \""b\"") AND patid in (1, \""b\"")";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Conversion failed when converting the nvarchar value 'b' to data type int.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Conversion failed when converting the nvarchar value 'b' to data type int.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid in ('1', 'b'on') AND patid in ('1', 'b'on')";
+                queryValue = @"$filter=patid in (\""1\"", \""b'on\"") AND patid in (\""1\"", \""b'on\"")";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Conversion failed when converting the nvarchar value 'b'on' to data type int.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Conversion failed when converting the nvarchar value 'b'on' to data type int.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid in (1, 'b'on') AND patid in (1, 'b'on')";
+                queryValue = @"$filter=patid in (1, \""b'on\"") AND patid in (1, \""b'on\"")";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Conversion failed when converting the nvarchar value 'b'on' to data type int.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Conversion failed when converting the nvarchar value 'b'on' to data type int.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid in ('1','b') AND patid in ('1','b')";
+                queryValue = @"$filter=patid in (\""1\"",\""b\"") AND patid in (\""1\"",\""b\"")";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Conversion failed when converting the nvarchar value 'b' to data type int.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Conversion failed when converting the nvarchar value 'b' to data type int.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid   in   ('1,  'b')  AND      patid  in ( '1,    'b' )";
+                queryValue = @"$filter=patid   in   (\""1,  \""b\"")  AND      patid  in ( \""1,    \""b\"" )";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata doesn't match expected format.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid in ('1,  'b) AND patid in ('1,    'b')";
+                queryValue = @"$filter=patid in (\""1,  \""b) AND patid in (\""1,    \""b\"")";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters : (1,");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - quotes are not escaped properly.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid in ('1, 'b) AND patid in ('1, 'b')";
+                queryValue = @"$filter=patid in (\""1, \""b) AND patid in (\""1, \""b\"")";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters : (1,");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - quotes are not escaped properly.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid in ('1,'b) AND patid in ('1,'b')";
+                queryValue = @"$filter=patid in (\""1,\""b) AND patid in (\""1,\""b\"")";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Conversion failed when converting the nvarchar value 'b' to data type int.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - quotes are not escaped properly.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=";
+                queryValue = @"$filter=";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameter : ($filter=). Query can contain 'filter' or 'join')");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameter : ($filter=). Query can contain 'filter' or 'join')");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid in ('1','b')";
+                queryValue = @"$filter=patid in (\""1\"",\""b\"")";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Conversion failed when converting the nvarchar value 'b' to data type int.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Conversion failed when converting the nvarchar value 'b' to data type int.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid eq 1 AND";
+                queryValue = @"$filter=patid eq 1 AND";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters in '$filter', please provide valid conditions without extra spaces.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters in '$filter', please provide valid conditions without extra spaces.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid eq 1 OR";
+                queryValue = @"$filter=patid eq 1 OR";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters in '$filter', please provide valid conditions without extra spaces.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters in '$filter', please provide valid conditions without extra spaces.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid eq 1 test";
+                queryValue = @"$filter=patid eq 1 test";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata doesn't match expected format.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid eq 1 AND'";
+                queryValue = @"$filter=patid eq 1 AND\""";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - quotes are not escaped properly.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid eq 1 OR'";
+                queryValue = @"$filter=patid eq 1 OR\""";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - quotes are not escaped properly.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid eq 1 test'";
+                queryValue = @"$filter=patid eq 1 test\""";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - quotes are not escaped properly.");
 
                 Thread.Sleep(3000);
 
-                queryValue = "$filter=patid eq 1 test patid eq 1";
+                queryValue = @"$filter=patid eq 1 AND'";
 
                 patientsObject = new();
                 patientsObject.Add("patfirstname", "test");
-                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, "Invalid input parameters.");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters.");
+
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=patid eq 1 OR'";
+
+                patientsObject = new();
+                patientsObject.Add("patfirstname", "test");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters.");
+
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=patid eq 1 test'";
+
+                patientsObject = new();
+                patientsObject.Add("patfirstname", "test");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters - supplied odata doesn't match expected format.");
+
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=patid eq 1 test patid eq 1";
+
+                patientsObject = new();
+                patientsObject.Add("patfirstname", "test");
+                updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @"Invalid input parameters.");
             }
         }
     }

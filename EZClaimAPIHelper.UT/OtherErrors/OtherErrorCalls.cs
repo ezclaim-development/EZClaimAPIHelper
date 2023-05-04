@@ -51,6 +51,27 @@ namespace EZClaimAPIHelper.UT
             }
         }
 
+        private void runOtherErrorCall_SuccessWithMessageEquals(ref APIUnitTestHelperObject apiHelperObject, HttpMethod httpMethod, string expectedValue, bool setResponseValues = true)
+        {
+            runOtherErrorCall(ref apiHelperObject, httpMethod, true, setResponseValues);
+
+            Assert.Equal(200, apiHelperObject.ResponseStatus);
+
+            Assert.Equal(expectedValue, GetMessage(apiHelperObject));
+        }
+
+        private void runOtherErrorCall_SuccessWithMessageContains(ref APIUnitTestHelperObject apiHelperObject, HttpMethod httpMethod, List<string> expectedContainsValues, bool setResponseValues = true)
+        {
+            runOtherErrorCall(ref apiHelperObject, httpMethod, true, setResponseValues);
+
+            Assert.Equal(200, apiHelperObject.ResponseStatus);
+
+            foreach (string expectedContainsValue in expectedContainsValues)
+            {
+                Assert.Contains(expectedContainsValue, GetMessage(apiHelperObject));
+            }
+        }
+
         private void runOtherErrorCall_PrintOutcome(ref APIUnitTestHelperObject apiHelperObject, HttpMethod httpMethod, bool showDetails = true, bool setResponseValues = true)
         {
             runOtherErrorCall(ref apiHelperObject, httpMethod, true, setResponseValues);
@@ -77,36 +98,90 @@ namespace EZClaimAPIHelper.UT
             {
                 tokenType = "TestToken_UpdatePatient";
             }
+            else if (apiHelperObject.Token.Equals(APIUnitTestHelperObject.s01Token))
+            {
+                tokenType = "s01Token";
+            }
 
             if (showDetails)
             {
                 output.WriteLine($"apiHelperObject.Endpoint = \"{apiHelperObject.Endpoint}\";");
                 output.WriteLine($"apiHelperObject.APIBody = $@\"{apiHelperObject.APIBody.Replace("\"", "\"\"").Replace("{", "{{").Replace("}", "}}")}\";");
-                output.WriteLine($"apiHelperObject.Token = APIUnitTestHelperObject.{tokenType};");
+
+                if (!string.IsNullOrWhiteSpace(tokenType))
+                {
+                    output.WriteLine($"apiHelperObject.Token = APIUnitTestHelperObject.{tokenType};");
+                }
+                else
+                {
+                    output.WriteLine($"apiHelperObject.Token = {apiHelperObject.Token}");
+                }
+
                 output.WriteLine("");
+            }
+
+            string method = "";
+
+            switch (httpMethod.ToString())
+            {
+                case "POST":
+                    method = "Post";
+                    break;
+                case "PUT":
+                    method = "Put";
+                    break;
+                case "DELETE":
+                    method = "Delete";
+                    break;
             }
 
             if (apiHelperObject.ResponseStatus == 200)
             {
-                output.WriteLine("Call Successful");
+                string message = GetMessage(apiHelperObject);
+
+                if (!string.IsNullOrWhiteSpace(message))
+                {
+                    output.WriteLine("//Call will be partially successful.");
+
+                    if (showDetails)
+                    {
+                        string[] splitDescription = message.Replace("\r\n", "\n").Split("\n");
+
+                        if (splitDescription.Length == 1)
+                        {
+                            output.WriteLine($"runOtherErrorCall_SuccessWithMessageEquals(ref apiHelperObject, HttpMethod.{method}, \"{message}\");");
+                        }
+                        else
+                        {
+                            output.WriteLine("expectedContainsValuesList = new();");
+
+                            foreach (string splitDescriptionItem in splitDescription)
+                            {
+                                if (!string.IsNullOrWhiteSpace(splitDescriptionItem))
+                                {
+                                    output.WriteLine($"expectedContainsValuesList.Add(\"{splitDescriptionItem}\");");
+                                }
+                            }
+
+                            output.WriteLine("");
+                            output.WriteLine($"runOtherErrorCall_SuccessWithMessageContains(ref apiHelperObject, HttpMethod.{method}, expectedContainsValuesList);");
+
+                            output.WriteLine("");
+                            output.WriteLine("Thread.Sleep(3000);");
+                        }
+                    }
+                    else
+                    {
+                        output.WriteLine($"{message}");
+                    }
+                }
+                else
+                {
+                    output.WriteLine("Call Successful");
+                }
             }
             else
             {
-                string method = "";
-
-                switch (httpMethod.ToString())
-                {
-                    case "POST":
-                        method = "Post";
-                        break;
-                    case "PUT":
-                        method = "Put";
-                        break;
-                    case "DELETE":
-                        method = "Delete";
-                        break;
-                }
-
                 string description = GetDescription(apiHelperObject);
 
                 string[] splitDescription = description.Replace("\r\n", "\n").Split("\n");
@@ -165,5 +240,19 @@ namespace EZClaimAPIHelper.UT
 
             return description;
         }
+
+        private string GetMessage(APIUnitTestHelperObject apiHelperObject)
+        {
+            string message = "";
+
+            if (apiHelperObject.ResponseMessage != null)
+            {
+                message = apiHelperObject.ResponseMessage;
+            }
+
+            return message;
+        }
+
+
     }
 }

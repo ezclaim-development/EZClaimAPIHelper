@@ -44,10 +44,6 @@ namespace EZClaimAPIHelper
 
         public static byte[] EncryptStringToBytes(string startingString, byte[] key, byte[] iv)
         {
-            if (string.IsNullOrWhiteSpace(startingString))
-            {
-                throw new ArgumentNullException("startingString");
-            }
 
             CheckIfByteNullOrEmpty(key, "key");
             CheckIfByteNullOrEmpty(iv, "iv");

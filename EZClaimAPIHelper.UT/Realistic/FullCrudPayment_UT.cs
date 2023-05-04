@@ -186,7 +186,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Payments/query";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=PmtNameOnCard eq 'APIPayment'""
+                    ""Query"": ""$filter=PmtNameOnCard eq \""APIPayment\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Delete);
@@ -234,7 +234,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/Payments/GetList";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=PmtNameOnCard eq 'APIPayment'""
+                    ""Query"": ""$filter=PmtNameOnCard eq \""APIPayment\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Post);
@@ -254,7 +254,7 @@ namespace EZClaimAPIHelper.UT
 
                 string query = apiHelperObject.ResponseDynamicResult.Query;
 
-                Assert.Equal("$filter=PmtNameOnCard eq 'APIPayment'", query);
+                Assert.Equal(@"$filter=PmtNameOnCard eq ""APIPayment""", query);
             }
             else
             {
@@ -348,7 +348,7 @@ namespace EZClaimAPIHelper.UT
     ""PmtCardEntryMethod"": ""4""
   }},
   ""queryString"": {{
-    ""query"": ""$filter=PmtNameOnCard eq 'APIPayment'""
+    ""query"": ""$filter=PmtNameOnCard eq \""APIPayment\""""
   }}
 }}";
 

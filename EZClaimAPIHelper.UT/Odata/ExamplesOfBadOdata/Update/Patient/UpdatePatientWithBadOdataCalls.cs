@@ -79,7 +79,7 @@ namespace EZClaimAPIHelper.UT
         {
             updatePatientWithBadOdata(ref apiHelperObject, query, keyValuePairs, true);
 
-            output.WriteLine($"queryValue = \"{query}\";");
+            output.WriteLine($"queryValue = @\"{query.Replace(@"\""", @"\""""")}\";");
             output.WriteLine("");
             output.WriteLine($"patientsObject = new();");
 
@@ -100,7 +100,7 @@ namespace EZClaimAPIHelper.UT
 
                 if (splitDescription.Length == 1)
                 {
-                    output.WriteLine($"updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, \"{description}\");");
+                    output.WriteLine($"updatePatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, patientsObject, @\"{description.Replace(@"""", @"""""")}\");");
                 }
                 else
                 {
@@ -110,7 +110,7 @@ namespace EZClaimAPIHelper.UT
                     {
                         if (!string.IsNullOrWhiteSpace(splitDescriptionItem))
                         {
-                            output.WriteLine($"expectedContainsValuesList.Add(\"{splitDescriptionItem}\");");
+                            output.WriteLine($"expectedContainsValuesList.Add(@\"{splitDescriptionItem.Replace(@"""", @"""""")}\");");
                         }
                     }
 

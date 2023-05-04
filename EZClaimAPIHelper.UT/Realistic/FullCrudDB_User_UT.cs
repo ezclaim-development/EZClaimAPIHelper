@@ -179,7 +179,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/DB_Users/query";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=DBUserWindowsUser eq 'APIDB_User'""
+                    ""Query"": ""$filter=DBUserWindowsUser eq \""APIDB_User\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Delete);
@@ -227,7 +227,7 @@ namespace EZClaimAPIHelper.UT
             apiHelperObject.Endpoint = "/api/v2/DB_Users/GetList";
 
             apiHelperObject.APIBody = @"{
-                    ""Query"": ""$filter=DBUserWindowsUser eq 'APIDB_User'""
+                    ""Query"": ""$filter=DBUserWindowsUser eq \""APIDB_User\""""
                 }";
 
             apiHelperObject.RunAPICall(HttpMethod.Post);
@@ -247,7 +247,7 @@ namespace EZClaimAPIHelper.UT
 
                 string query = apiHelperObject.ResponseDynamicResult.Query;
 
-                Assert.Equal("$filter=DBUserWindowsUser eq 'APIDB_User'", query);
+                Assert.Equal(@"$filter=DBUserWindowsUser eq ""APIDB_User""", query);
             }
             else
             {
@@ -341,7 +341,7 @@ namespace EZClaimAPIHelper.UT
     ""DBUserName"": ""APIDB_User1_4""
   }},
   ""queryString"": {{
-    ""query"": ""$filter=DBUserWindowsUser eq 'APIDB_User'""
+    ""query"": ""$filter=DBUserWindowsUser eq \""APIDB_User\""""
   }}
 }}";
 
