@@ -52,6 +52,14 @@ namespace EZClaimAPIHelper.UT
 
                 Thread.Sleep(3000);
 
+                selectAuthorized_UnitSimpleListWithPatientName(ref apiHelperObject);
+                
+                Thread.Sleep(3000);
+
+                selectAuthorized_UnitSimpleListWithPatientNamePage(ref apiHelperObject, 1);
+
+                Thread.Sleep(3000);
+
                 selectAuthorized_UnitsWithLastNameAPIAuthorized_UnitLastName(ref apiHelperObject, true);
 
                 int id1 = (int)apiHelperObject.ResponseData[0].AuthUnitID;
@@ -256,6 +264,39 @@ namespace EZClaimAPIHelper.UT
         private void selectAuthorized_UnitSimpleListPage(ref APIUnitTestHelperObject apiHelperObject, int page)
         {
             apiHelperObject.Endpoint = $"/api/v2/Authorized_Units/GetSimpleList/page/{page}";
+
+            apiHelperObject.APIBody = @"";
+
+            apiHelperObject.RunAPICall(HttpMethod.Post);
+
+            Assert.Equal(200, apiHelperObject.ResponseStatus);
+            Assert.True(apiHelperObject.ResponseData.Count > 5);
+        }
+
+        /// <summary>
+        /// Select simple full list of Authorized_Units
+        /// </summary>
+        /// <param name="apiHelperObject"></param>
+        private void selectAuthorized_UnitSimpleListWithPatientName(ref APIUnitTestHelperObject apiHelperObject)
+        {
+            apiHelperObject.Endpoint = "/api/v2/Authorized_Units/GetSimpleListWithPatientName";
+
+            apiHelperObject.APIBody = @"";
+
+            apiHelperObject.RunAPICall(HttpMethod.Post);
+
+            Assert.Equal(200, apiHelperObject.ResponseStatus);
+            Assert.True(apiHelperObject.ResponseData.Count > 5);
+        }
+
+        /// <summary>
+        /// Select simple full list of Authorized_Units based on page number
+        /// </summary>
+        /// <param name="apiHelperObject"></param>
+        /// <param name="page"></param>
+        private void selectAuthorized_UnitSimpleListWithPatientNamePage(ref APIUnitTestHelperObject apiHelperObject, int page)
+        {
+            apiHelperObject.Endpoint = $"/api/v2/Authorized_Units/GetSimpleListWithPatientName/page/{page}";
 
             apiHelperObject.APIBody = @"";
 

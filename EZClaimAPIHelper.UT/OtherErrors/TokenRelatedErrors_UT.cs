@@ -42,7 +42,7 @@ namespace EZClaimAPIHelper.UT
                 apiHelperObject.APIBody = $@"{{}}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_CreatePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -50,7 +50,7 @@ namespace EZClaimAPIHelper.UT
                 apiHelperObject.APIBody = $@"{{}}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_DeletePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -58,7 +58,7 @@ namespace EZClaimAPIHelper.UT
                 apiHelperObject.APIBody = $@"{{}}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_UpdatePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -68,7 +68,7 @@ namespace EZClaimAPIHelper.UT
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_SelectPatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -78,7 +78,7 @@ namespace EZClaimAPIHelper.UT
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_CreatePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -88,7 +88,7 @@ namespace EZClaimAPIHelper.UT
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_DeletePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -98,7 +98,7 @@ namespace EZClaimAPIHelper.UT
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_UpdatePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -106,7 +106,7 @@ namespace EZClaimAPIHelper.UT
                 apiHelperObject.APIBody = $@"{{}}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_SelectPatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -114,7 +114,7 @@ namespace EZClaimAPIHelper.UT
                 apiHelperObject.APIBody = $@"{{}}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_DeletePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -122,7 +122,7 @@ namespace EZClaimAPIHelper.UT
                 apiHelperObject.APIBody = $@"{{}}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_UpdatePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -135,7 +135,7 @@ namespace EZClaimAPIHelper.UT
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_SelectPatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Put, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Put, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -148,7 +148,7 @@ namespace EZClaimAPIHelper.UT
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_CreatePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Put, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Put, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -161,7 +161,7 @@ namespace EZClaimAPIHelper.UT
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_DeletePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Put, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Put, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -171,7 +171,7 @@ namespace EZClaimAPIHelper.UT
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_SelectPatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Delete, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Delete, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -181,7 +181,7 @@ namespace EZClaimAPIHelper.UT
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_CreatePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Delete, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Delete, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -191,7 +191,7 @@ namespace EZClaimAPIHelper.UT
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_UpdatePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Delete, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Delete, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -199,7 +199,7 @@ namespace EZClaimAPIHelper.UT
                 apiHelperObject.APIBody = $@"{{}}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_CreatePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -207,7 +207,7 @@ namespace EZClaimAPIHelper.UT
                 apiHelperObject.APIBody = $@"{{}}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_DeletePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -215,7 +215,7 @@ namespace EZClaimAPIHelper.UT
                 apiHelperObject.APIBody = $@"{{}}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_UpdatePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -225,7 +225,7 @@ namespace EZClaimAPIHelper.UT
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_SelectPatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
 
 
                 Thread.Sleep(3000);
@@ -236,7 +236,7 @@ namespace EZClaimAPIHelper.UT
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_CreatePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
 
 
                 Thread.Sleep(3000);
@@ -247,7 +247,7 @@ namespace EZClaimAPIHelper.UT
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_DeletePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
 
 
                 Thread.Sleep(3000);
@@ -258,7 +258,7 @@ namespace EZClaimAPIHelper.UT
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_UpdatePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
 
 
                 Thread.Sleep(3000);
@@ -267,7 +267,7 @@ namespace EZClaimAPIHelper.UT
                 apiHelperObject.APIBody = $@"{{}}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_SelectPatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -275,7 +275,7 @@ namespace EZClaimAPIHelper.UT
                 apiHelperObject.APIBody = $@"{{}}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_DeletePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -283,7 +283,7 @@ namespace EZClaimAPIHelper.UT
                 apiHelperObject.APIBody = $@"{{}}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_UpdatePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -296,7 +296,7 @@ namespace EZClaimAPIHelper.UT
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_SelectPatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Put, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Put, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -309,7 +309,7 @@ namespace EZClaimAPIHelper.UT
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_CreatePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Put, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Put, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -322,7 +322,7 @@ namespace EZClaimAPIHelper.UT
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_DeletePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Put, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Put, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -332,7 +332,7 @@ namespace EZClaimAPIHelper.UT
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_SelectPatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Delete, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Delete, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -342,7 +342,7 @@ namespace EZClaimAPIHelper.UT
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_CreatePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Delete, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Delete, "The supplied access credential does not have permission to access this endpoint.");
 
                 Thread.Sleep(3000);
 
@@ -352,7 +352,159 @@ namespace EZClaimAPIHelper.UT
                 }}";
                 apiHelperObject.Token = APIUnitTestHelperObject.TestToken_UpdatePatient;
 
-                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Delete, "The supplied access credential does not have permission to view this endpoint.");
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Delete, "The supplied access credential does not have permission to access this endpoint.");
+
+                apiHelperObject.Endpoint = "/api/v2/Patients/list";
+                apiHelperObject.APIBody = @"[
+                    {
+                    ""PatFirstName"": ""APIPatientFirstName9"",
+                    ""PatLastName"":""APIPatientLastName"",
+                    ""claimsObjectWithoutIDWithChildrenWithoutID"": [
+                    {
+                        ""ClaDiagnosis1"" : ""APIClaimDiagnosis"",
+                        ""claim_InsuredsObjectWithoutID"": [
+                            {
+                                ""ClaInsFirstName"": ""APIClaim_InsuredFirstName1"",
+                                ""ClaInsLastName"": ""APIClaim_InsuredLastName"",
+                                ""ClaInsSequence"":""1""
+                            }
+                        ],
+                        ""claim_NotesObjectWithoutID"": [
+                            {
+                                ""ClaNoteEvent"": ""Created"",
+                                ""ClaNoteUserName"":""APIClaim_NotesLastName""
+                            }
+                        ],
+                        ""service_LinesObjectWithoutID"": [
+                            {
+                                ""SrvFromDate"": ""2023-01-01"",
+                                ""SrvToDate"": ""2023-03-07"",
+                                ""SrvRespChangeDate"": ""2023-03-07"",
+                                ""SrvCustomField1"":""APIService_Line""
+                            }
+                        ],
+                    }
+                    ],
+                    ""patient_NotesObjectWithoutID"": [
+                    {
+                        ""PatNoteEvent"": ""Created"",
+                        ""PatNoteUserName"":""APIPatient_NoteUserName""
+                    },
+                    {
+                        ""PatNoteEvent"": ""Created"",
+                        ""PatNoteUserName"":""APIPatient_NoteUserName2""
+                    }
+                    ],
+                    ""paymentsObjectWithoutID"": [
+                    {
+                        ""PmtDate"": ""2023-03-07"",
+                        ""PmtNameOnCard"":""APIPayment""
+                    }
+                    ]
+                    },
+                    {
+                    ""PatFirstName"": ""APIPatientFirstName10"",
+                    ""PatLastName"":""APIPatientLastName"",
+                    ""claimsObjectWithoutIDWithChildrenWithoutID"": [
+                    {
+                        ""ClaDiagnosis1"" : ""APIClaimDiagnosis"",
+                        ""claim_InsuredsObjectWithoutID"": [
+                            {
+                                ""ClaInsFirstName"": ""APIClaim_InsuredFirstName1"",
+                                ""ClaInsLastName"": ""APIClaim_InsuredLastName"",
+                                ""ClaInsSequence"":""1""
+                            }
+                        ],
+                        ""claim_NotesObjectWithoutID"": [
+                            {
+                                ""ClaNoteEvent"": ""Created"",
+                                ""ClaNoteUserName"":""APIClaim_NotesLastName""
+                            },
+                            {
+                                ""ClaNoteEvent"": ""Created"",
+                                ""ClaNoteUserName"":""APIClaim_NotesLastName2""
+                            }
+                        ],
+                        ""service_LinesObjectWithoutID"": [
+                            {
+                                ""SrvFromDate"": ""2023-01-01"",
+                                ""SrvToDate"": ""2023-03-07"",
+                                ""SrvRespChangeDate"": ""2023-03-07"",
+                                ""SrvCustomField1"":""APIService_Line""
+                            }
+                        ],
+                    }
+                    ],
+                    ""patient_NotesObjectWithoutID"": [
+                    {
+                        ""PatNoteEvent"": ""Created"",
+                        ""PatNoteUserName"":""APIPatient_NoteUserName""
+                    }
+                    ],
+                    ""paymentsObjectWithoutID"": [
+                    {
+                        ""PmtDate"": ""2023-03-07"",
+                        ""PmtNameOnCard"":""APIPayment""
+                    }
+                    ]
+                    }
+                ]";
+
+                apiHelperObject.Token = APIUnitTestHelperObject.s01Token_CreatePatient;
+
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
+
+                apiHelperObject.Endpoint = "/api/v2/Patients";
+                apiHelperObject.APIBody = @"{
+                    ""PatFirstName"": ""APIPatientFirstName8"",
+                    ""PatLastName"":""APIPatientLastName"",
+                    ""claimsObjectWithoutIDWithChildrenWithoutID"": [
+                    {
+                        ""ClaDiagnosis1"" : ""APIClaimDiagnosis"",
+                        ""claim_InsuredsObjectWithoutID"": [
+                            {
+                                ""ClaInsFirstName"": ""APIClaim_InsuredFirstName1"",
+                                ""ClaInsLastName"": ""APIClaim_InsuredLastName"",
+                                ""ClaInsSequence"":""1""
+                            }
+                        ],
+                        ""claim_NotesObjectWithoutID"": [
+                            {
+                                ""ClaNoteEvent"": ""Created"",
+                                ""ClaNoteUserName"":""APIClaim_NotesLastName""
+                            },
+                            {
+                                ""ClaNoteEvent"": ""Created"",
+                                ""ClaNoteUserName"":""APIClaim_NotesLastName2""
+                            }
+                        ],
+                        ""service_LinesObjectWithoutID"": [
+                            {
+                                ""SrvFromDate"": ""2023-01-01"",
+                                ""SrvToDate"": ""2023-03-07"",
+                                ""SrvRespChangeDate"": ""2023-03-07"",
+                                ""SrvCustomField1"":""APIService_Line""
+                            }
+                        ],
+                    }
+                    ],
+                    ""patient_NotesObjectWithoutID"": [
+                    {
+                        ""PatNoteEvent"": ""Created"",
+                        ""PatNoteUserName"":""APIPatient_NoteUserName""
+                    }
+                    ],
+                    ""paymentsObjectWithoutID"": [
+                    {
+                        ""PmtDate"": ""2023-03-07"",
+                        ""PmtNameOnCard"":""APIPayment""
+                    }
+                    ]
+                }";
+
+                apiHelperObject.Token = APIUnitTestHelperObject.s01Token_CreatePatient;
+
+                runOtherErrorCall_ExpectedOutcomeEquals(ref apiHelperObject, HttpMethod.Post, "The supplied access credential does not have permission to access this endpoint.");
             }
         }
     }

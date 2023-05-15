@@ -60,6 +60,14 @@ namespace EZClaimAPIHelper.UT
 
                 Thread.Sleep(3000);
 
+                selectPatientSimpleListWithPrimary(ref apiHelperObject);
+
+                Thread.Sleep(3000);
+
+                selectPatientSimpleListWithPrimaryPage(ref apiHelperObject, 1);
+
+                Thread.Sleep(3000);
+
                 selectPatientsWithLastNameAPIPatientLastName(ref apiHelperObject, true);
 
                 int id1 = (int)apiHelperObject.ResponseData[0].PatID;
@@ -485,6 +493,39 @@ namespace EZClaimAPIHelper.UT
         private void selectPatientSimpleListPage(ref APIUnitTestHelperObject apiHelperObject, int page)
         {
             apiHelperObject.Endpoint = $"/api/v2/Patients/GetSimpleList/page/{page}";
+
+            apiHelperObject.APIBody = @"";
+
+            apiHelperObject.RunAPICall(HttpMethod.Post);
+
+            Assert.Equal(200, apiHelperObject.ResponseStatus);
+            Assert.True(apiHelperObject.ResponseData.Count > 5);
+        }
+        
+        /// <summary>
+        /// Select simple full list of Patient
+        /// </summary>
+        /// <param name="apiHelperObject"></param>
+        private void selectPatientSimpleListWithPrimary(ref APIUnitTestHelperObject apiHelperObject)
+        {
+            apiHelperObject.Endpoint = "/api/v2/Patients/GetSimpleListWithPrimary";
+
+            apiHelperObject.APIBody = @"";
+
+            apiHelperObject.RunAPICall(HttpMethod.Post);
+
+            Assert.Equal(200, apiHelperObject.ResponseStatus);
+            Assert.True(apiHelperObject.ResponseData.Count > 5);
+        }
+
+        /// <summary>
+        /// Select simple full list of Patient based on page number
+        /// </summary>
+        /// <param name="apiHelperObject"></param>
+        /// <param name="page"></param>
+        private void selectPatientSimpleListWithPrimaryPage(ref APIUnitTestHelperObject apiHelperObject, int page)
+        {
+            apiHelperObject.Endpoint = $"/api/v2/Patients/GetSimpleListWithPrimary/page/{page}";
 
             apiHelperObject.APIBody = @"";
 
