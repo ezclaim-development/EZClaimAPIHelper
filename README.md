@@ -2,11 +2,13 @@
 
 This project is as a helper project used to interact with the EZClaim API. If you are a client or a partner of EZClaim's and wish to use the api, please reach out to support@ezclaim.com. If you are not a partner but wish to gain access to the api, please also reach out to support@ezclaim.com
 
-Once you have reach out to EZClaim, we will supply you with a set of credentials which you will be able to use to interact with a database and the api. You will also be presented with a document containing the documentation for the api. This document will list all endpoints, valid data which can be supplied to those endpoints, and an explanation of the different OData types.
+Once you have reached out to EZClaim, we will supply you with a set of credentials which you will be able to use to interact with a database and the api. You will also be presented with a document containing the documentation for the api. This document will list all endpoints, valid data which can be supplied to those endpoints, and an explanation of the different OData types.
 
 ## Where to begin
 
 Before looking at all of the examples that exist in this project, we recommend starting by looking at the examples in the [FullCrudPatient_UT](EZClaimAPIHelper.UT/Realistic/FullCrudPatient_UT.cs) This will give very simple examples of how to interact with the Patient endpoints in the EZClaimAPI.
+
+NOTE how in our examples we are generating a new AES object every time. You don't have to do this, but there is no need to store your AES settings anywhere, so we'd recommended doing this for ease of use.
 
 
 ## [APIUnitTestHelperObject](EZClaimAPIHelper.UT/APIUnitTestHelperObject.cs)
