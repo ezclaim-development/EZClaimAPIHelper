@@ -427,10 +427,111 @@ namespace EZClaimAPIHelper.UT
 
                 SelectPatientWithGoodOdata(ref apiHelperObject, queryValue);
 
-                //These currently fail because of the extra comma. We might change this in the future. For the moment we are not sure. If you have a real world case where you need a comma, please let us know.
-                //queryValue = @"$filter=Patfirstname in (\""12, 3\"", \""234\"")";
-                //queryValue = @"$filter=Patfirstname in (\""12, 3\"", \""234\"") OR Patfirstname eq \""APIA\""\""dju \""\""stment\"" AND Patfirstname In (\""APIAdjustment\"", \""APIAd\""\""justment\"", \""APIAdj ustment\"", \""APIAdj\""\"" test \""\"" ustment\"")";
+                Thread.Sleep(3000);
 
+                queryValue = @"$filter=Patfirstname in (\""12, 3\"", \""234\"")";
+
+                SelectPatientWithGoodOdata(ref apiHelperObject, queryValue);
+
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=Patfirstname in (\""12, 3\"", \""234\"") OR Patfirstname eq \""APIA\""\""dju \""\""stment\"" AND Patfirstname In (\""APIAdjustment\"", \""APIAd\""\""justment\"", \""APIAdj ustment\"", \""APIAdj\""\"" test \""\"" ustment\"")";
+
+                SelectPatientWithGoodOdata(ref apiHelperObject, queryValue);
+
+                queryValue = @"$filter=Patfirstname in (1,\""a\"")";
+
+                SelectPatientWithGoodOdata(ref apiHelperObject, queryValue);
+
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=Patfirstname in (\""a\"",1)";
+
+                SelectPatientWithGoodOdata(ref apiHelperObject, queryValue);
+
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=Patfirstname in (1 ,\""a\"")";
+
+                SelectPatientWithGoodOdata(ref apiHelperObject, queryValue);
+
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=Patfirstname in (\""a\"", 1)";
+
+                SelectPatientWithGoodOdata(ref apiHelperObject, queryValue);
+
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=Patfirstname in (1 , \""a\"")";
+
+                SelectPatientWithGoodOdata(ref apiHelperObject, queryValue);
+
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=Patfirstname in (\""a\"" , 1)";
+
+                SelectPatientWithGoodOdata(ref apiHelperObject, queryValue);
+
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=Patfirstname in (1  ,  \""a\"")";
+
+                SelectPatientWithGoodOdata(ref apiHelperObject, queryValue);
+
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=Patfirstname in (\""a\""  ,  1)";
+
+                SelectPatientWithGoodOdata(ref apiHelperObject, queryValue);
+
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=Patfirstname in (1  ,  \""a\"" )";
+
+                SelectPatientWithGoodOdata(ref apiHelperObject, queryValue);
+
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=Patfirstname in (\""a\""  ,  1 )";
+
+                SelectPatientWithGoodOdata(ref apiHelperObject, queryValue);
+
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=Patfirstname in (1  ,  \""a\""  )";
+
+                SelectPatientWithGoodOdata(ref apiHelperObject, queryValue);
+
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=Patfirstname in (\""a\""  ,  1  )";
+
+                SelectPatientWithGoodOdata(ref apiHelperObject, queryValue);
+
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=Patfirstname in ( 1  ,  \""a\""  )";
+
+                SelectPatientWithGoodOdata(ref apiHelperObject, queryValue);
+
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=Patfirstname in ( \""a\""  ,  1  )";
+
+                SelectPatientWithGoodOdata(ref apiHelperObject, queryValue);
+
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=Patfirstname in (  1  ,  \""a\""  )";
+
+                SelectPatientWithGoodOdata(ref apiHelperObject, queryValue);
+
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=Patfirstname in (  \""a\""  ,  1  )";
+
+                SelectPatientWithGoodOdata(ref apiHelperObject, queryValue);
             }
         }
     }

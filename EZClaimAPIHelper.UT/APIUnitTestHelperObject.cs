@@ -59,6 +59,13 @@ namespace EZClaimAPIHelper.UT
             BaseAddress = baseAddress;
         }
 
+        public void GeneratePostmanCallForAPICall(HttpMethod method)
+        {
+            string encryptedString = Convert.ToBase64String(AESHelper.EncryptStringToBytes(APIBody, AESKey, AESIV));
+
+            APIHelper.CreatePostmanFileForAPICall(Endpoint, method, encryptedString, Token, Convert.ToBase64String(AESIV), GetEncryptedAESKey(), BaseAddress);
+        }
+
         public string GetEncryptedAESKey()
         {
             if (string.IsNullOrWhiteSpace(EncryptedAESKey))

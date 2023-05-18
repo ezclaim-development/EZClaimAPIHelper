@@ -495,6 +495,41 @@ namespace EZClaimAPIHelper.UT
                 queryValue = @"$filter=Patfirstname in (\""12 \""3\"", \""234\"") OR Patfirstname eq \""APIA\""\""dju \""\""stment\"" AND Patfirstname In (\""APIAdjustment\"", \""APIAd\""\""justment\"", \""APIAdj ustment\"", \""APIAdj\""\"" test \""\"" ustment\"")";
 
                 selectPatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, @"Invalid input parameters - quotes are not escaped properly.");
+
+                queryValue = @"$filter=Patfirstname in (  1  ,,  \""a\""  )";
+
+                selectPatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, @"Invalid statement in request : $filter=Patfirstname in (  1  ,,  ""a""  )");
+
+                Thread.Sleep(3000);
+
+                queryValue = @"$filter=Patfirstname in (  \""a\""  ,, 1  )";
+
+                selectPatientWithBadOdata_ExpectedOutcomeEquals(ref apiHelperObject, queryValue, @"Invalid statement in request : $filter=Patfirstname in (  ""a""  ,, 1  )");
+
+
+                //These work, but should fail
+                //queryValue = @"$filter=Patfirstname in (  1  , ,  \""a\""  )";
+
+                //selectPatientWithBadOdata_PrintOutcome(ref apiHelperObject, queryValue);
+
+                //Thread.Sleep(3000);
+
+                //queryValue = @"$filter=Patfirstname in (  \""a\""  , , 1  )";
+
+                //selectPatientWithBadOdata_PrintOutcome(ref apiHelperObject, queryValue);
+                
+                
+                //These fail but should work
+                //queryValue = @"$filter=Patfirstname in (  \""a,,b,c\"")";
+
+                //selectPatientWithBadOdata_PrintOutcome(ref apiHelperObject, queryValue);
+                
+                //Thread.Sleep(3000);
+
+                //queryValue = @"$filter=Patfirstname eq \""a,,b,c\""";
+
+                //selectPatientWithBadOdata_PrintOutcome(ref apiHelperObject, queryValue);
+
             }
         }
     }
