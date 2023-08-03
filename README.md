@@ -1,8 +1,10 @@
 # EZClaimAPIHelper
 
-This project is as a helper project used to interact with the EZClaim API. If you are a client or a partner of EZClaim's and wish to use the api, please reach out to support@ezclaim.com. If you are not a partner but wish to gain access to the api, please also reach out to support@ezclaim.com
+This project serves as a valuable tool for interacting with the EZClaim API. If you are interested in acquiring a testing company file, please fill out [this form](https://share.hsforms.com/1oBYQ3HeMRjGf-hk1WaUxCw8nkmb).
 
-Once you have reached out to EZClaim, we will supply you with a set of credentials which you will be able to use to interact with a database and the api. You will also be presented with a document containing the documentation for the api. This document will list all endpoints, valid data which can be supplied to those endpoints, and an explanation of the different OData types.
+For instructions on generating tokens from within the EZClaim application, as well as a detailed list of all endpoints, valid data for those endpoints, and an explanation of the various OData types, please refer to [this Knowledge Base article](https://kb.ezclaim.com/knowledge/ezclaim-api).
+
+Swagger documentation can be found [here](https://ezclaimapidev.azurewebsites.net/swagger/index.html).
 
 ## Where to begin
 
